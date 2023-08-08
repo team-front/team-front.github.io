@@ -10,21 +10,21 @@ function CustomerList(){
 
     // dummyCustomerData
     const dummyCustomerData = [
-        ['김성대', '010-1111-1111', '서울시 OO구 OO로 11'],
-        ['이멋사', '010-2222-2222', '서울시 OO구 OO로 22'],
-        ['고사자', '010-3333-3333', '서울시 OO구 OO로 33'],
-        ['서코딩', '010-4444-4444', '서울시 OO구 OO로 44'],
-        ['허에러', '010-5555-5555', '서울시 OO구 OO로 55'],
-        ['정서버', '010-6666-6666', '서울시 OO구 OO로 66'],
-        ['시오류', '010-7777-7777', '서울시 OO구 OO로 77'],
-        ['조리액', '010-8888-8888', '서울시 OO구 OO로 88'],
-        ['함노드', '010-9999-9999', '서울시 OO구 OO로 99'],
-        ['설해커', '010-0000-0000', '서울시 OO구 OO로 00'],
-        ['안허브', '010-1212-1212', '서울시 OO구 OO로 12'],
-        ['박디비', '010-1313-1313', '서울시 OO구 OO로 13'],
+        ['김성대', '010-1111-1111', '서울시 OO구 OO로 11', 3000],
+        ['이멋사', '010-2222-2222', '서울시 OO구 OO로 22', 20000],
+        ['고사자', '010-3333-3333', '서울시 OO구 OO로 33', 50000],
+        ['서코딩', '010-4444-4444', '서울시 OO구 OO로 44', 40000],
+        ['허에러', '010-5555-5555', '서울시 OO구 OO로 55', 10000],
+        ['정서버', '010-6666-6666', '서울시 OO구 OO로 66', 5000],
+        ['시오류', '010-7777-7777', '서울시 OO구 OO로 77', 1000],
+        ['조리액', '010-8888-8888', '서울시 OO구 OO로 88', 7000],
+        ['함노드', '010-9999-9999', '서울시 OO구 OO로 99', 2000],
+        ['설해커', '010-0000-0000', '서울시 OO구 OO로 00', 9000],
+        ['안허브', '010-1212-1212', '서울시 OO구 OO로 12', 12000],
+        ['박디비', '010-1313-1313', '서울시 OO구 OO로 13', 15000],
 
     ];
-    const dummyColumns = ["이름", "전화번호", "주소"];
+    const dummyColumns = ["이름", "전화번호", "주소", "남은 충전액(원)"];
 
     // window.addEventListener('DOMContentLoaded', event => {
     //     // Simple-DataTables
@@ -63,8 +63,8 @@ function CustomerList(){
             </ol>
 
             <div className="card mb-4">
-                {/* <div className="card-header" style={{display:'flex', justifyContent: 'center'}}>
-                    <i className="fas fa-address-book me-1" style={{fontSize:'28px', position:'relative', top:'5px', paddingRight:'8px'}}></i>
+                <div className="card-header" style={{display:'flex', justifyContent: 'center'}}>
+                    {/* <i className="fas fa-address-book me-1" style={{fontSize:'28px', position:'relative', top:'5px', paddingRight:'8px'}}></i>
                     
                     <div style={{position:'relative'}}>
                         <button className="btn2 me-2 dropdown-toggle" onClick={()=>divisonToggle()} >{division}</button>
@@ -74,16 +74,17 @@ function CustomerList(){
                             <li><hr className="dropdown-divider" /></li>
                             <li className="dropdown-item2" style={{textAlign:'left'}}><button style={{backgroundColor:'transparent', border:'none'}} onClick={()=>{setDivision("전화번호"); setDivisionDisplay('none');}}>전화번호</button></li>
                         </ul>                    
-                    </div>
+                    </div> */}
                     
+                    <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{float: 'right', marginLeft: '93%'}}>추가</button>
                       
-                    <form className="d-none d-md-block form-inline me-0 me-md-3 my-2 my-md-0" style={{width:'60%'}}>
+                    {/* <form className="d-none d-md-block form-inline me-0 me-md-3 my-2 my-md-0" style={{width:'60%'}}>
                         <div className="input-group" style={{paddingBottom:'2px'}}>
                             <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
                             <button className="btn btn-primary" id="btnNavbarSearch" type="button" style={{backgroundColor:"green"}}><i className="fas fa-search"></i></button>
                         </div>
-                    </form>
-                </div> */}
+                    </form> */}
+                </div>
 
                 <div className="card-body">
                     <table id="datatablesSimple">
@@ -108,6 +109,7 @@ function CustomerList(){
                                         <td style={{textAlign:'left'}} key={data[0].toString()}>{data[0]}</td>
                                         <td style={{textAlign:'left'}} key={data[1].toString()}>{data[1]}</td>
                                         <td style={{textAlign:'left'}} key={data[2].toString()}>{data[2]}</td>
+                                        <td style={{textAlign:'left'}} key={data[3].toString()}>{data[3]}</td>
                                     </tr>
                                 );
                             })}
