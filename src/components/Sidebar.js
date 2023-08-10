@@ -3,40 +3,41 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "../assets/css/LineIcons.3.0.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "../assets/js/datatables-simple-demo.js";
+import { Link } from "react-router-dom";
 
 
-function Sidebar(){
+function Sidebar({}){
     return(
         <div id="layoutSidenav_nav">
-            <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <nav className= "sb-sidenav accordion sb-sidenav-dark sb-sidenav-toggled" id="sidenavAccordion">
                 <div className="sb-sidenav-menu">
                     <div className="nav">
                         <div className="sb-sidenav-menu-heading" style={{textAlign:'left', color:'lightgray'}}>고객관리</div>
-                        <a className="nav-link" href="#">
+                        <Link className="nav-link" to="/customerlist">
                             <div className="sb-nav-link-icon"><i className="fas fa-address-book"></i></div>
                             고객별 구매내역
-                        </a>
+                        </Link>
                         {/* <a className="nav-link" href="#">
                             <div className="sb-nav-link-icon"><i className="fas fa-rectangle-list"></i></div>
                             고객구매내역
                         </a> */}
-                        <div className="sb-sidenav-menu-heading" style={{textAlign:'left', color:'lightgray'}}>관리자실적</div>
-                        <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        {/* <div className="sb-sidenav-menu-heading" style={{textAlign:'left', color:'lightgray'}}>관리자실적</div> */}
+                        {/* <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                            1일 관리내역
+                            1일 관리내역 */}
                             {/* <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div> */}
-                        </a>
+                        {/* </a> */}
                         {/* <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav className="sb-sidenav-menu-nested nav">
                                 <a className="nav-link" href="layout-static.html">Static Navigation</a>
                                 <a className="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                             </nav>
                         </div> */}
-                        <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                        {/* <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                            총 관리내역
+                            총 관리내역 */}
                             {/* <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div> */}
-                        </a>
+                        {/* </a> */}
                         {/* <div className="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a className="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">

@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import logo from '../assets/img/logo.png';
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 function AdminNavbar(props){
 
     const [NavDropDisplay, setNavDropDisplay] = useState("none");
@@ -34,9 +35,9 @@ function AdminNavbar(props){
              <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                 {/* Navbar Brand */}
                 <img src={logo} style={{width:"50px", height:'50px', marginLeft:'10px'}}/>
-                <a className="navbar-brand ps-2" href="#" style={{padding: "0px", textAlign:'left', width:'175px'}}>Management</a>
+                <Link className="navbar-brand ps-2" to="/" style={{padding: "0px", textAlign:'left', width:'175px'}}>Management</Link>
                 {/* Sidebar Toggle */}
-                <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!" onClick={()=>{AdminNavbarDisplay()}}><i className="fas fa-bars"></i></button>
+                <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={()=>{AdminNavbarDisplay()}}><i className="fas fa-bars"></i></button>
                 {/* Navbar Search */}
                 {/* <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                     <div className="input-group">
@@ -54,7 +55,7 @@ function AdminNavbar(props){
                         <ul className="collapse dropdown-menu dropdown-menu-end" style={{display:NavDropDisplay}}>
                             <li><span className="dropdown-item2" href="#!">관리자 계정</span></li>
                             <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item" href="#!">Logout</a></li>
+                            <li><a className="dropdown-item3" href="#!">Logout</a></li>
                         </ul>
                         </div>
                     </li>

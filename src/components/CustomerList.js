@@ -5,26 +5,42 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import "../assets/js/datatables-simple-demo.js";
 import {DataTable} from "simple-datatables"
 import { useState, useEffect } from "react";
+import { useLocation, NavLink , Link} from "react-router-dom";
+import AddCustomerData from "./AddCustomerData";
 
 function CustomerList(){
 
     // dummyCustomerData
-    const dummyCustomerData = [
-        ['김성대', '010-1111-1111', '서울시 OO구 OO로 11', 3000],
-        ['이멋사', '010-2222-2222', '서울시 OO구 OO로 22', 20000],
-        ['고사자', '010-3333-3333', '서울시 OO구 OO로 33', 50000],
-        ['서코딩', '010-4444-4444', '서울시 OO구 OO로 44', 40000],
-        ['허에러', '010-5555-5555', '서울시 OO구 OO로 55', 10000],
-        ['정서버', '010-6666-6666', '서울시 OO구 OO로 66', 5000],
-        ['시오류', '010-7777-7777', '서울시 OO구 OO로 77', 1000],
-        ['조리액', '010-8888-8888', '서울시 OO구 OO로 88', 7000],
-        ['함노드', '010-9999-9999', '서울시 OO구 OO로 99', 2000],
-        ['설해커', '010-0000-0000', '서울시 OO구 OO로 00', 9000],
-        ['안허브', '010-1212-1212', '서울시 OO구 OO로 12', 12000],
-        ['박디비', '010-1313-1313', '서울시 OO구 OO로 13', 15000],
+    const phBtn = 
+        <td>
+            <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{display:'inline-block', marginRight: '5px', marginBottom:'3px', width:'130px'}} >
+                구매내역 확인
+            </button>                                          
+        </td>;
 
-    ];
-    const dummyColumns = ["이름", "전화번호", "주소", "남은 충전액(원)"];
+    const [dummyCustomerData, updateDummyCustomerData] = useState([
+        ['김성대', '010-1111-1111', '서울시 OO구 OO로 11', 3000, phBtn],
+        ['이멋사', '010-2222-2222', '서울시 OO구 OO로 22', 20000,phBtn],
+        ['고사자', '010-3333-3333', '서울시 OO구 OO로 33', 50000, phBtn],
+        ['서코딩', '010-4444-4444', '서울시 OO구 OO로 44', 40000, phBtn],
+        ['허에러', '010-5555-5555', '서울시 OO구 OO로 55', 10000, phBtn],
+        ['정서버', '010-6666-6666', '서울시 OO구 OO로 66', 5000, phBtn],
+        ['시오류', '010-7777-7777', '서울시 OO구 OO로 77', 1000, phBtn],
+        ['조리액', '010-8888-8888', '서울시 OO구 OO로 88', 7000, phBtn],
+        ['함노드', '010-9999-9999', '서울시 OO구 OO로 99', 2000, phBtn],
+        ['설해커', '010-0000-0000', '서울시 OO구 OO로 00', 9000, phBtn],
+        ['안허브', '010-1212-1212', '서울시 OO구 OO로 12', 12000, phBtn],
+        ['박디비', '010-1313-1313', '서울시 OO구 OO로 13', 15000, phBtn],
+
+    ]);
+    const dummyColumns = ["이름", "전화번호", "주소", "남은 충전액(원)", "구매내역 확인"];
+
+    const location = useLocation();
+    // const CusSingleData = { ...location.state };
+    // if(CusSingleData){
+    //     updateDummyCustomerData(...dummyCustomerData, 
+    //         [CusSingleData.name, CusSingleData.phoneNum, CusSingleData.address, CusSingleData.restMoney]);
+    // }
 
     // window.addEventListener('DOMContentLoaded', event => {
     //     // Simple-DataTables
@@ -35,12 +51,25 @@ function CustomerList(){
     //     console.log(simpleDatatables);
     // });
 
+
     useEffect(() => {
-        let simpleDatatables = new DataTable('#datatablesSimple', {perPage:'10', sortable:true});
+        const simpleDatatables = new DataTable('#datatablesSimple', {scrollY:"400px", paging: false, sortable:false, searchCol:true});
     });
 
     const [division, setDivision] = useState('이름');
     const [divisionDisplay, setDivisionDisplay] = useState('none');
+    const [ACDDisplay, setACDDisplay] = useState(0);
+
+    const [name, setName] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
+    const [address, setAddress] = useState("");
+    const [restMoney, setRestMoney] = useState(0);
+    const [updateDone, setUpdateDone] = useState(0);
+
+    if(!updateDone && name && phoneNum && address){
+        updateDummyCustomerData([...dummyCustomerData, [name, phoneNum, address, restMoney, phBtn]]);
+        setUpdateDone(1);
+    }
 
     const divisonToggle = () => {
         if (divisionDisplay === 'none'){
@@ -52,8 +81,6 @@ function CustomerList(){
             console.log(divisionDisplay);
         }
     };
-
-    
 
     return(
         <div className="container-fluid px-4">
@@ -76,7 +103,10 @@ function CustomerList(){
                         </ul>                    
                     </div> */}
                     
-                    <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{float: 'right', marginLeft: '93%'}}>추가</button>
+                    {/* <Link to='/addcustomerdata' style={{float: 'right', marginLeft: '93%'}}> */}
+                        <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{float: 'right', marginLeft: '93%'}}
+                            onClick={()=>{setACDDisplay(1);}}>추가</button>
+                    {/* </Link> */}
                       
                     {/* <form className="d-none d-md-block form-inline me-0 me-md-3 my-2 my-md-0" style={{width:'60%'}}>
                         <div className="input-group" style={{paddingBottom:'2px'}}>
@@ -91,7 +121,8 @@ function CustomerList(){
                         <thead>
                             <tr>
                                 {dummyColumns.map((column)=>(
-                                        <th key={column} >{column}<i className="fas fa-sort" style={{paddingLeft:'5px'}}></i></th>
+                                        // <th key={column} >{column}<i className="fas fa-sort" style={{paddingLeft:'5px'}}></i></th>
+                                        <th key={column} >{column}</th>
                                 ))}
                             </tr>
                         </thead>
@@ -103,13 +134,17 @@ function CustomerList(){
                             </tr>
                         </tfoot>
                         <tbody>
-                            {dummyCustomerData.map((data)=>{
+                            {dummyCustomerData.map((data, index)=>{
+                                console.log(index);
                                 return(
                                     <tr style={{textAlign:'left'}}>
                                         <td style={{textAlign:'left'}} key={data[0].toString()}>{data[0]}</td>
                                         <td style={{textAlign:'left'}} key={data[1].toString()}>{data[1]}</td>
                                         <td style={{textAlign:'left'}} key={data[2].toString()}>{data[2]}</td>
                                         <td style={{textAlign:'left'}} key={data[3].toString()}>{data[3]}</td>
+                                        <td style={{textAlign:'left'}} key={data[4].toString()}>
+                                            <Link to={`/purchasehistorylist/${index}`} state= {{name: data[0], phone: data[1], restMoney : data[3]}}>{data[4]}</Link>
+                                        </td>
                                     </tr>
                                 );
                             })}
@@ -117,6 +152,10 @@ function CustomerList(){
                     </table>
                 </div>
             </div>
+
+            {ACDDisplay ? 
+                <AddCustomerData setACDDisplay={setACDDisplay} setUpdateDone={setUpdateDone}
+                    setName={setName} setAddress={setAddress} setPhoneNum={setPhoneNum} setRestMoney={setRestMoney}/> : ""}
         </div>
     )
 

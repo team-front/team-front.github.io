@@ -6,9 +6,11 @@ import "../assets/js/datatables-simple-demo.js";
 import {DataTable} from "simple-datatables"
 import { useState, useEffect } from "react";
 import PurchaseDataTd from "./PurchaseDataTd";
+import { useLocation, Link, useParams, useNavigate } from "react-router-dom";
+import AddPurchaseData from "./AddPurchaseData";
 
-function PurchaseHistoryList(props){
 
+function PurchaseHistoryList(props,){
 
     // dummyPurchaseData
     // const refundExchangeBtn = 
@@ -68,36 +70,58 @@ function PurchaseHistoryList(props){
         ['2023-02-01', '진동 안마기', '서울시 OO구 OO로 11', 54000, '결제완료','구매완료'],
         ['2023-04-01', '미끄럼방지 매트 10매', '서울시 OO구 OO로 11', 28000, '결제완료','구매완료'],
         ['2023-06-01', '폴라폴리스 무릎 담요', '서울시 OO구 OO로 11', 9000, '결제완료','구매완료'],
-        ['2023-08-01', '고탄력 손목보호대 ', '서울시 OO구 xx로 88', 8000, '결제완료','구매완료'],
+        ['2023-08-01', '고탄력 손목보호대 ', '서울시 OO구 xx로 88', 8000, '결제미완','구매중'],
     ]);
     const dummyColumns = ["구매일자", "상품명", "배송지", "결제액", "결제상태","구매대행", "교환/환불"];
 
-    // window.addEventListener('DOMContentLoaded', event => {
-    //     // Simple-DataTables
-    //     // https://github.com/fiduswriter/Simple-DataTables/wiki
+    const [purchaseDate, setPurchaseDate] = useState(0);
+    const [product, setProduct] = useState();
+    const [address, setAddress] = useState();
+    const [price, setPrice] = useState();
+    const [payState, setPayState] = useState("결제상태");
+    const [insPurState, setInsPurState] = useState("구매대행상태");
 
-        
-    //     const simpleDatatables = new DataTable('#datatablesSimple');
-    //     console.log(simpleDatatables);
-    // });
+    const location = useLocation();
+    const [updateDone, setUpdateDone] = useState(0);
+    // const PdSingleData = location.state;
+    // // useEffect(()=>{
+    // //     updateDummyPurchaseData(dummyPurchaseData.concat([PdSingleData.purchaseDate, PdSingleData.product, PdSingleData.address, PdSingleData.price, PdSingleData.payState, PdSingleData.insPurState]));
+    // // },[location]);
+    // console.log(PdSingleData.url)
+    // if(!updateDone){
+    //     updateDummyPurchaseData([...dummyPurchaseData,[PdSingleData.purchaseDate, PdSingleData.product, PdSingleData.address, PdSingleData.price, PdSingleData.payState, PdSingleData.insPurState]]);
+    //     setUpdateDone(1);
+    // } 
+
+    if(!updateDone && purchaseDate && product && price && address && payState != "결제상태" && insPurState != "구매대행상태"){
+        updateDummyPurchaseData([...dummyPurchaseData,[purchaseDate, product, address, price, payState, insPurState]])
+        setUpdateDone(1);
+    }
+
+    console.log(dummyPurchaseData);
+
+    const name = location.state.name;
+    const phone = location.state.phone;
+    const restMoney = location.state.restMoney;
 
     useEffect(() => {
-        let simpleDatatables = new DataTable('#datatablesSimple', {scrollY:"400px", paging: false, sortable:false});
+        const simpleDatatables = new DataTable('#datatablesSimple', {scrollY:"400px", paging: false, sortable:false});
     });
 
     const [division, setDivision] = useState('이름');
     const [divisionDisplay, setDivisionDisplay] = useState('none');
     //const [restRefundMoney, setRestRefundMoney] = useState(props.restMoney);
-    const [restRefundMoney, setRestRefundMoney] = useState(props.restMoney ? props.restMoney:3000);
+    const [restRefundMoney, setRestRefundMoney] = useState(restMoney ? restMoney:3000);
+    const [addCDDisplay, setAddCDDisplay] = useState(0);
 
     const divisonToggle = () => {
         if (divisionDisplay === 'none'){
             setDivisionDisplay('block');
-            console.log(divisionDisplay);
+            //console.log(divisionDisplay);
         }
         else{
             setDivisionDisplay('none');
-            console.log(divisionDisplay);
+            //console.log(divisionDisplay);
         }
     };
 
@@ -114,14 +138,16 @@ function PurchaseHistoryList(props){
             <div className="card mb-4">
                 <div className="card-header" style={{display:'flex', justifyContent: 'space-around'}}>
                     <div style={{width:"90%", fontSize:'20px',  paddingTop: '5px'}}>
-                        <div style={{float:'left', fontWeight: 'bold'}}>{props.name ? props.name:"김성대"}</div>
-                        <div style={{float:'left', paddingTop:'5px', marginLeft: '5px', fontSize:'15px'}}>(전화번호 : {props.phone ? props.phone:"010-1111-1111"})</div>
+                        <div style={{float:'left', fontWeight: 'bold'}}>{name ? name:"김성대"}</div>
+                        <div style={{float:'left', paddingTop:'5px', marginLeft: '5px', fontSize:'15px'}}>(전화번호 : {phone ? phone:"010-1111-1111"})</div>
                         <div style={{float:'right', paddingTop:'3px', paddingRight: '5px', fontSize:'17px'}}>
                             남은 충전액 : <span style={{fontWeight:'bold', color:'red'}}>{restRefundMoney}</span>원
                         </div>
                     </div>
-                    <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{float: 'right'}}>추가</button>
-                      
+                    {/* <Link to={`/addpurchasedata/${useParams().id}`} > */}
+                        <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{float: 'right'}} onClick={()=>{setAddCDDisplay(1)}}>추가</button>
+                    {/* </Link> */}
+
                     {/* <form className="d-none d-md-block form-inline me-0 me-md-3 my-2 my-md-0" style={{width:'60%'}}>
                         <div className="input-group" style={{paddingBottom:'2px'}}>
                             <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
@@ -147,7 +173,7 @@ function PurchaseHistoryList(props){
                             </tr>
                         </tfoot>
                         <tbody>
-                            {dummyPurchaseData.map((data, index)=>{
+                            {dummyPurchaseData.reverse().map((data, index)=>{
                                 return(
                                     <PurchaseDataTd key={index} index={index} data={data} refundMoney={restRefundMoney} setRefundMoney={setRestRefundMoney} dummyPurchaseData={dummyPurchaseData} updateDummyPurchaseData={updateDummyPurchaseData}/>
                                 );
@@ -156,6 +182,12 @@ function PurchaseHistoryList(props){
                     </table>
                 </div>
             </div>
+
+            {addCDDisplay ? <AddPurchaseData 
+                setPurchaseDate={setPurchaseDate} setProduct={setProduct} setPrice={setPrice} setAddCDDisplay={setAddCDDisplay}
+                setAddress={setAddress} setPayState={setPayState} setInsPurState={setInsPurState} setUpdateDone={setUpdateDone}
+                purchaseDate={purchaseDate} product={product} price={price} 
+                address={address} payState={payState} insPurState={insPurState}/> : ""}
         </div>
     )
 
