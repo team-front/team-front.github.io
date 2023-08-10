@@ -9,7 +9,52 @@ import PurchaseDataTd from "./PurchaseDataTd";
 
 function PurchaseHistoryList(props){
 
+
     // dummyPurchaseData
+    // const refundExchangeBtn = 
+    // <td>
+    //     <button className={exchange ? "btn btn-secondary" : "btn btn-success"} id="btnNavbarSearch" type="button" style={{display:'inline-block', marginRight: '5px', marginBottom:'3px'}} 
+    //         onClick={()=>{exchangeButton();setRefund(0);setExchangeDone(0);setExchangeDisplay('block');}}
+    //         disabled={exchangeDone||refundDone?'disabled':''}>
+    //             교환
+    //     </button>
+    //     <button className={refund ? "btn btn-secondary" : "btn btn-success"} id="btnNavbarSearch" type="button" style={{display:"inline-block"}} 
+    //         onClick={()=>{refundButton(); setExchange(0);setRefundDone(0);setRefundDisplay('block');setExchangeDone(0);setExchangeDisplay('block');}} 
+    //         disabled={refundDone?'disabled':''}>
+    //             반품
+    //     </button>                                            
+    // </td>;
+
+    // <td>
+    //     <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{display:'inline-block', marginRight: '5px', marginBottom:'3px'}} >
+    //         교환
+    //     </button>
+    //     <button className="btn btn-success" id="btnNavbarSearch" type="button" style={{display:"inline-block"}} >
+    //         반품
+    //     </button>                                            
+    // </td>;
+
+    // const [exchangeBtnClass,setExchangeBtnClass] = useState("");
+    // const [refundBtnClass,setRefundBtnClass] = useState("");
+    // const [exchangeBtnClick,setExchangeBtnClick] = useState(()=>{});
+    // const [refundBtnClick,setRefundBtnClick] = useState(()=>{});
+    // const [exchangeBtnDis,setExchangeBtnDis] = useState("");
+    // const [refundBtnDis,setRefundBtnDis] = useState("");
+
+    // const refundExchangeBtn = 
+    // <td>
+    //     <button className={exchangeBtnClass} id="btnNavbarSearch" type="button" style={{display:'inline-block', marginRight: '5px', marginBottom:'3px'}} 
+    //         onClick={exchangeBtnClick}
+    //         disabled={exchangeBtnDis}>
+    //             교환
+    //     </button>
+    //     <button className={refundBtnClass} id="btnNavbarSearch" type="button" style={{display:"inline-block"}} 
+    //         onClick={refundBtnClick} 
+    //         disabled={refundBtnDis}>
+    //             반품
+    //     </button>                                            
+    // </td>;
+
     const [dummyPurchaseData, updateDummyPurchaseData] = useState([
         ['2021-01-01', '중년여성 양말 세트', '서울시 OO구 OO로 11', 100000, '결제완료','구매완료'],
         ['2021-02-01', '중년 남성 조끼', '서울시 OO구 OO로 11', 50000, '결제완료','구매완료'],
@@ -25,7 +70,7 @@ function PurchaseHistoryList(props){
         ['2023-06-01', '폴라폴리스 무릎 담요', '서울시 OO구 OO로 11', 9000, '결제완료','구매완료'],
         ['2023-08-01', '고탄력 손목보호대 ', '서울시 OO구 xx로 88', 8000, '결제완료','구매완료'],
     ]);
-    const dummyColumns = ["구매일자", "상품명", "배송지", "결제액", "결제상태","구매대행상태", "교환/환불"];
+    const dummyColumns = ["구매일자", "상품명", "배송지", "결제액", "결제상태","구매대행", "교환/환불"];
 
     // window.addEventListener('DOMContentLoaded', event => {
     //     // Simple-DataTables
@@ -37,7 +82,7 @@ function PurchaseHistoryList(props){
     // });
 
     useEffect(() => {
-        let simpleDatatables = new DataTable('#datatablesSimple', {perPage:'10', sortable:true});
+        let simpleDatatables = new DataTable('#datatablesSimple', {scrollY:"400px", paging: false, sortable:false});
     });
 
     const [division, setDivision] = useState('이름');
@@ -90,7 +135,7 @@ function PurchaseHistoryList(props){
                         <thead>
                             <tr>
                                 {dummyColumns.map((column)=>(
-                                        <th key={column} >{column}<i className="fas fa-sort" style={{paddingLeft:'5px'}}></i></th>
+                                        <th key={column}>{column}</th>
                                 ))}
                             </tr>
                         </thead>
@@ -103,9 +148,8 @@ function PurchaseHistoryList(props){
                         </tfoot>
                         <tbody>
                             {dummyPurchaseData.map((data, index)=>{
-                                console.log(data);
                                 return(
-                                    <PurchaseDataTd key={index} data={data} refundMoney={restRefundMoney} setRefundMoney={setRestRefundMoney}/>
+                                    <PurchaseDataTd key={index} index={index} data={data} refundMoney={restRefundMoney} setRefundMoney={setRestRefundMoney} dummyPurchaseData={dummyPurchaseData} updateDummyPurchaseData={updateDummyPurchaseData}/>
                                 );
                             })}
                         </tbody>
