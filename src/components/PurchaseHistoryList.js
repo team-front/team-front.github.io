@@ -80,6 +80,7 @@ function PurchaseHistoryList(props,){
     const [price, setPrice] = useState();
     const [payState, setPayState] = useState("결제상태");
     const [insPurState, setInsPurState] = useState("구매대행상태");
+    const [setDone, setSetDone] = useState(0);
 
     const location = useLocation();
     const [updateDone, setUpdateDone] = useState(0);
@@ -93,12 +94,18 @@ function PurchaseHistoryList(props,){
     //     setUpdateDone(1);
     // } 
 
-    if(!updateDone && purchaseDate && product && price && address && payState != "결제상태" && insPurState != "구매대행상태"){
+    console.log(payState);
+    console.log(setDone &&!updateDone && purchaseDate && product && price && address && payState != "결제상태" && insPurState != "구매대행상태");
+
+    if(setDone && !updateDone){
         updateDummyPurchaseData([...dummyPurchaseData,[purchaseDate, product, address, price, payState, insPurState]])
         setUpdateDone(1);
+        setSetDone(0);
+        setPayState("구매상태");
+        setInsPurState("구매대행상태");
     }
 
-    console.log(dummyPurchaseData);
+    //console.log(dummyPurchaseData);
 
     const name = location.state.name;
     const phone = location.state.phone;
@@ -187,7 +194,7 @@ function PurchaseHistoryList(props,){
                 setPurchaseDate={setPurchaseDate} setProduct={setProduct} setPrice={setPrice} setAddCDDisplay={setAddCDDisplay}
                 setAddress={setAddress} setPayState={setPayState} setInsPurState={setInsPurState} setUpdateDone={setUpdateDone}
                 purchaseDate={purchaseDate} product={product} price={price} 
-                address={address} payState={payState} insPurState={insPurState}/> : ""}
+                address={address} payState={payState} insPurState={insPurState} setSetDone={setSetDone}/> : ""}
         </div>
     )
 

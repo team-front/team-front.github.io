@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 
 
 function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, setInsPurState, setPayState,
-                            setAddCDDisplay, setUpdateDone, purchaseDate, product, address, price, insPurState, payState}){
+                            setSetDone, setAddCDDisplay, setUpdateDone, purchaseDate, product, address, price, insPurState, payState}){
 
     // const [purchaseDate, setPurchaseDate] = useState("");
     // const [product, setProduct] = useState("");
@@ -41,8 +41,8 @@ function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, set
 
 
     return(
-        //<div id="layoutAuthentication_content" style={{marginBottom:"50px"}}>
-            <div className=" pop-up" id="container-fluid px-4" style={{zIndex:'1'}}>
+        <div id="layoutAuthentication_content" style={{marginBottom:"50px"}}>
+            <div className="pop-up" id="container-fluid px-4" style={{zIndex:'1'}}>
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-7">
@@ -53,7 +53,7 @@ function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, set
                                     </h3>
                                 </div>
                                 <div className="card-body">
-                                    <form> {/* "구매일자", "상품명", "배송지", "결제액", "결제상태", "구매대행" */}
+                                    {/* <form> "구매일자", "상품명", "배송지", "결제액", "결제상태", "구매대행" */}
                                         <div className="row mb-3">
                                             <div className="col-md-6">
                                                 <div className="form-floating mb-3 mb-md-0">
@@ -117,11 +117,11 @@ function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, set
                                                 {/* state= {{purchaseDate : purchaseDate, product : product, address : address, price : price,
                                                          payState : payState, insPurState : insPurState, url : "/addpurchasedata",}}> */}
                                                 <div className="d-grid">
-                                                    <button className="btn btn-success btn-block btn-click" onClick={()=>{setAddCDDisplay(0);setUpdateDone(0);setPayState("구매상태");setInsPurState("구매대행상태");}}>추가</button>
+                                                    <button className="btn btn-success btn-block btn-click" onClick={()=>{setAddCDDisplay(0);setUpdateDone(0);setSetDone(1);}}>추가</button>
                                                 </div>
                                             {/* </Link> */}
                                         </div>
-                                    </form>
+                                    {/* </form> */}
                                 </div>
                                 <div className="card-footer text-center py-3" style={{cursor:"pointer"}} onClick={()=>{setAddCDDisplay(0);}}>
                                         <div className="small">취소</div>
@@ -131,7 +131,7 @@ function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, set
                     </div>
                 </div>
             </div>
-        //</div>
+        </div>
     );
 }
 

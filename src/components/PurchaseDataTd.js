@@ -18,8 +18,10 @@ function PurchaseDataTd({index, data, refundMoney, setRefundMoney, dummyPurchase
     const [refund, setRefund] = useState(0);
     const [refundDone, setRefundDone] = useState(0);
     const [refundDisplay, setRefundDisplay] = useState('block');
-    const [insPurDone, setInsPurDone] = useState(data[5]=="구매중"?0 : 1);
-    const [payDone, setPayDone] = useState(data[4]=="결제미완"? 0 : 1);
+    const [insPurDone, setInsPurDone] = useState(0);
+    const [payDone, setPayDone] = useState(0);
+    // const [insPurDone, setInsPurDone] = useState(data[5]==="구매중"?0 : 1);
+    // const [payDone, setPayDone] = useState(data[4]==="결제미완"? 0 : 1);
 
 
     // //반품, 환불 버튼 속성
@@ -97,7 +99,7 @@ function PurchaseDataTd({index, data, refundMoney, setRefundMoney, dummyPurchase
     const edit_data_pay_fin = index_dataset.slice(0,4).concat('결제완료', index_dataset.slice(5,));
     const edit_data_fin = index_dataset.slice(0,4).concat('결제완료', '구매완료');
 
-    console.log("editData",editData);
+    //console.log("editData",editData);
 
     useEffect(()=>{
         if(refund && !refundDone){
@@ -112,10 +114,10 @@ function PurchaseDataTd({index, data, refundMoney, setRefundMoney, dummyPurchase
         else if(exchangeDone){
             setEditData(edit_data_exchange_fin);
         }
-        else if(insPurDone){
+        else if(insPurDone && !payDone){
             setEditData(edit_data_insPur_fin);
         }
-        else if(payDone){
+        else if(!insPurDone && payDone){
             setEditData(edit_data_pay_fin);
         }
         else{
@@ -137,18 +139,18 @@ function PurchaseDataTd({index, data, refundMoney, setRefundMoney, dummyPurchase
             <td style={{textAlign:'left'}}>{data[2]}</td>
             <td style={{textAlign:'left'}}>{data[3]}</td>
             <td style={refund? {textAlign: 'left', color : 'red', fontWeight:refundDone?'bold':'normal'}:{textAlign:'left'}} >
-                {data[4]=="결제미완" ? <span style={{color:"red"}}>
-                        결제미완
-                        <button className="btn btn-success btn-refund-fin" style={{display : payDone ? "none":"block", fontSize : "12px", padding:'2px'}} onClick={()=>{setPayDone(1)}}>
+                {data[4]==="결제미완" ? <span style={{color:"red"}}>
+                        {data[4]}
+                        <button className="btn btn-success btn-refund-fin" style={{display : data[4]!="결제미완" ? "none":"block", fontSize : "12px", padding:'2px'}} onClick={()=>{setPayDone(1);setEditData(edit_data_pay_fin);}}>
                             결제완료
                         </button>
                     </span>: data[4]}
             </td>
             <td style={refund || exchange? {textAlign: 'left', color : 'red', fontWeight:exchangeDone||refundDone?'bold':'normal'}:{textAlign:'left'}}>
-                {data[5]=='구매중' ?  
+                {data[5]==='구매중' ?  
                     <span style={{color:"red"}}>
-                        구매중
-                        <button className="btn btn-success btn-refund-fin" style={{display : insPurDone ? "none":"block", fontSize : "12px", padding:'2px'}} onClick={()=>{setInsPurDone(1)}}>
+                        {data[5]}
+                        <button className="btn btn-success btn-refund-fin" style={{display : data[5]!='구매중' ? "none":"block", fontSize : "12px", padding:'2px'}} onClick={()=>{setInsPurDone(1);setEditData(edit_data_insPur_fin);}}>
                             구매완료
                         </button>
                     </span>: data[5]}
@@ -156,12 +158,12 @@ function PurchaseDataTd({index, data, refundMoney, setRefundMoney, dummyPurchase
             <td>
                 <button className={exchange ? "btn btn-secondary" : "btn btn-success"} id="btnNavbarSearch" type="button" style={{display:'inline-block', marginRight: '5px', marginBottom:'3px'}} 
                     onClick={()=>{exchangeButton();setRefund(0);setExchangeDone(0);setExchangeDisplay('block');}}
-                    disabled={!payDone||!insPurDone||exchangeDone||refundDone?'disabled':''}>
+                    disabled={data[5]=="구매중"||data[4]=="결제미완"||exchangeDone||refundDone?'disabled':''}>
                         교환
                 </button>
                 <button className={refund ? "btn btn-secondary" : "btn btn-success"} id="btnNavbarSearch" type="button" style={{display:"inline-block"}} 
                     onClick={()=>{refundButton(); setExchange(0);setRefundDone(0);setRefundDisplay('block');setExchangeDone(0);setExchangeDisplay('block');}} 
-                    disabled={!payDone||!insPurDone||refundDone?'disabled':''}>
+                    disabled={data[5]=="구매중"||data[4]=="결제미완"||refundDone?'disabled':''}>
                         반품
                 </button>                                            
             </td>
