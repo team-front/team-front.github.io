@@ -1,54 +1,197 @@
-.Home {
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Gasoek+One&family=Gugi&family=Nanum+Pen+Script&display=swap');
+@font-face {
+  font-family: 'KOTRAHOPE';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.Home{
+  overflow: auto;
+  position: relative;
+}
+.Home::before {
     text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/HomeBackImg4.jpg");
+    background-repeat : no-repeat center;
+    background-size: cover;
+    position:fixed;
+    overflow:hidden;
+
+    -webkit-filter: blur(1px); 
+    -moz-filter: blur(1px); 
+    -o-filter: blur(1px); 
+    -ms-filter: blur(1px); 
+    filter: blur(1px);
+    z-index: -1; 
+    content: "";
   }
   
+  .Home-card{
+    width : 90%;
+    height : 70%;
+    justify-content: center;
+    margin : auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    /* background-color: rgba(255, 255, 255, 0.6); */
+  }
+
   .Home-header {
-    height: 8%;
+    text-align: center;
+    height: 5%;
     align-items: center;
     justify-content: center;
-    margin-top: 2%;
-    font-size: 50px;
-    font-weight: 600;
-    background-color: #B2C3B2;
+    position: relative;
+    margin: 50px auto;
+    font-size: 70px;
+    background-color: transparent;
     color: black;
+    padding-top:15px;
+    padding-bottom:10px;
+    margin-bottom: 0px;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%;
+    
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 40%;
+    /* background-color: rgba(255, 255, 255, 0.4); */
+
+  }
+
+  .header-card{
+    width: 100%;
+    height : auto;
+    background-color:transparent;
+    color:black;
+    margin : auto;
+  }
+
+  .header-card::before{
+    width: 90%;
+    height : auto;
+    background-color:lightgray;
+    margin : auto;
+
+    -webkit-filter: blur(3px); 
+    -moz-filter: blur(3px); 
+    -o-filter: blur(3px); 
+    -ms-filter: blur(3px); 
+    filter: blur(3px);
+    z-index: -1; 
+    content: "";
   }
   
+  .sub-title{
+    font-size:20px;
+  }
+
   .Home-line {
-    margin-top: 2%;
-    margin-right: 7%;
-    margin-left: 7%;
+    color: transparent;
+    height: 1px;
+    border : 5px double black;
   }
   
   .Home-menu {
+    text-align: center;
     justify-content: center;
     display: flex;
     align-items: center;
-    height: 400px;
-    margin-top: 5%;
+    height: 60%;
+    margin-top: 3%;
+    font-size:450px;
+
+    font-family: 'KOTRAHOPE';
+    font-weight: bold;
+    font-style: normal;
+
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    padding-top: 0px;
+    padding-bottom : 30px;
+
   }
+
+  /*
+  background-Image 출처 : <a href="https://kr.freepik.com/free-vector/flat-seollal-elements-collection_35097315.htm#query=%EC%B2%9C%EC%A3%BC%EB%A8%B8%EB%8B%88&position=43&from_view=search&track=ais">Freepik</a>
+  */
   
   .Home-menu1 {
-    background-color: #B2C3B2;
-    border-radius: 50%;
-    width: 25%;
-    height: 70px;
-    font-size: 50px;
-    font-weight: bold;
-    padding-top: 120px;
-    padding-bottom: 190px;
+    background-color: transparent;
+    width: 20%;
+    height: 20px;
+    font-size: 10%;
+    /* font-weight: bold; */
+    padding-top: 10%;
+    padding-bottom: 120px;
     cursor: pointer;
+    transform: rotate(10deg);
+    margin-top : 10px;
+    margin-bottom: 10px;
+    margin-right:25px;
+
+    position: relative;
+    top: 9px;
+
+    background-image:url("../img/HomeItem4.png");
+    background-repeat : no-repeat;
+    background-size: 100% auto;
+  }
+
+  @keyframes 요리조리 {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(-8deg);
+    }
+  
+    50% {
+      transform: rotate(8deg);
+    }
+    
+    75% {
+      transform: rotate(-8deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .Home-menu1:hover,.Home-menu2:hover,.Home-menu3:hover {
+    animation-name: 요리조리;
+    animation-duration: 0.6s;
   }
   
   .Home-menu2 {
-    background-color: #78B778;
-    border-radius: 50%;
-    width: 25%;
-    height: 70px;
-    font-size: 50px;
-    font-weight: bold;
-    padding-top: 120px;
-    padding-bottom: 190px;
+    /* background-color: #78B778; */
+    background-color: transparent;
+    width: 19%;
+    height: 19px;
+    font-size: 10%;
+    /* font-weight: bold; */
+    padding-top: 11.5%;
+    padding-bottom: 120px;
     cursor: pointer;
+    transform: rotate(-10deg);
+    margin-top : 10px;
+    margin-bottom: 12px;
+    margin-right:40px;
+
+    position: relative;
+    bottom: 10px;
+
+    background-image:url("../img/HomeItem3.png");
+    background-repeat : no-repeat;
+    background-size: 100% auto;
   }
   
   .Home-menu2:hover, .Home-menu3:hover{
@@ -56,21 +199,31 @@
   }
 
   .Home-menu3 {
-    background-color: #058B05;
-    border-radius: 50%;
-    width: 25%;
-    height: 70px;
-    font-size: 50px;
-    font-weight: bold;
-    padding-top: 120px;
-    padding-bottom: 190px;
+    /* background-color: #058B05; */
+    background-color: transparent;
+    width: 20%;
+    height: 20px;
+    font-size: 10%;
+    /* font-weight: bold; */
+    padding-top: 10%;
+    padding-bottom: 110px;
     cursor: pointer;
+    transform: rotate(5deg);
+    margin-top : 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+
+    position: relative;
+    top: 9px;
+
+    background-image:url("../img/HomeItem4.png");
+    background-repeat : no-repeat;
+    background-size: 100% auto;
   }
   
   .Home-bottom {
     height: 10%;
-    margin-top: 7%;
-    border: 15px solid #B2C3B2;
+    border: 15px solid transparent;
   }
   
   .Home-blogo {

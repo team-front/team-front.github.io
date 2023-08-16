@@ -1,0 +1,295 @@
+.Lo-whole{
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.Lo-whole::before {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/BackImg.jpeg");
+    background-repeat : no-repeat center;
+    background-size: cover;
+    position:fixed;
+    overflow:hidden;
+
+    -webkit-filter: blur(1px); 
+    -moz-filter: blur(1px); 
+    -o-filter: blur(1px); 
+    -ms-filter: blur(1px); 
+    filter: blur(1px);
+    z-index: -1; 
+    content: "";
+  }
+
+  .My-header {
+    /* height: 8%;
+    margin-top: 2%;
+    font-size: 50px;
+    color: black;
+    text-align: left;
+    margin-left: 5%;
+    cursor: pointer; */
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+
+    font-size: 70px;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%;
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 40%;
+  }
+
+/* .Lo-back {
+    width: 80px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 90%;
+    margin-left: 5%;
+    border: 1px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+}
+
+
+.Lo-header {
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+
+    font-size: 70px;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    /* font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%; */
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    /* border-radius: 40%;
+  }  */
+
+.Lo-topbox {
+    background-color: #2E4E31;
+    color: white;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.Lo-back {
+    width: 80px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5%;
+    border: 0px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+}
+
+.Lo-header {
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+
+    font-size: 70px;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%;
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 40%;
+  }
+
+.Lo-topbox {
+    background-color: #2E4E31;
+    color: white;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+/* .Lo-back {
+    margin-top: 2%;
+    text-align: left;
+    cursor: pointer;
+    margin-right: 90%;
+    margin-left: 5%;
+    border: 1px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+} */
+
+.Lo-signup {
+    justify-content: center;
+    display: flex;
+    align-items: right;
+    margin-left: 70%;
+}
+
+.Lo-signment{
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.Lo-signbutton {
+    margin-left: 2%;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #A3A3A3;
+    background-color: #B2C3B2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+}
+
+.Lo-middle {
+
+}
+
+.Lo-name {
+    font-size: 26px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.Lo-nametag {
+    margin-right: 220px;
+    font-weight: 600;
+    margin-left: 28px;
+}
+
+.Lo-nameinput {
+    width: 30%;
+}
+
+.Lo-number {
+    font-size: 26px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.Lo-numbertag {
+    margin-right: 200px;
+    font-weight: 600;
+}
+
+.Lo-numberinput {
+    width: 30%;
+}
+
+.Lo-cert {
+    font-size: 26px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top: 3%;
+}
+
+.Lo-certtag {
+    margin-right: 200px;
+    color: #0046CD;
+    font-weight: 600;
+}
+
+.Lo-certinput {
+    width: 30%;
+}
+
+.Lo-login {
+    font-size: 25px;
+    font-weight: 600;
+    background-color: #2F4E2F;
+    color: white;
+    border: none;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 6%;
+    margin-bottom: 2%;
+    display: block;
+    text-align: center;
+}
+
+.Lo-admin{
+    font-size: 20px;
+    text-align: center;
+    text-decoration : underline;
+}
+
+.Link-lo-admin:hover{
+    color:black;
+    font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../../assets/css/Home.css';
+import Logo1 from "../../assets/img/Logo1.png"
 
 function HomeLog() {
 
@@ -10,18 +11,23 @@ function HomeLog() {
     }
 
   return (
-    <div className="Home">
-      <header className="Home-header">
-        <p>
-          Home Logo
-        </p>
-      </header>
-      <div className="Home-line">
+    <div className="Home" style={{overflow:'auto'}}>
+      <header className="Home-header" >
+      {/* <div className="Home-line">
         <hr/>
-      </div>
+      </div> */}
+        <p className="header-card">
+          보 따 리<img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
+        </p>
+        <p className="sub-title">전화로 원하는 상품을 간편히!</p>
+      </header>
+      <div className="Home-card">
+      {/* <div className="Home-line">
+        <hr/>
+      </div> */}
       <div className="Home-menu">
         <div className="Home-menu1" onClick={goToMyPage}>
-          마이페이지
+          내 보따리 
         </div>
         <Link to="/selllist" className="Home-menu2">
           <div >
@@ -35,9 +41,10 @@ function HomeLog() {
         </Link>
       </div>
       <div className="Home-bottom"/>
-      <div className="Home-blogo">
+      {/* <div className="Home-blogo">
         작은 로고<br/>
         서비스명
+      </div> */}
       </div>
     </div>
   );

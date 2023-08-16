@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import React from 'react';
+import Logo1 from "../../assets/img/Logo1.png"
 
 import '../../assets/css/MyPage.css';
 
@@ -21,12 +22,12 @@ const MyPage = () => {
     }
 
     return (
-        <div>
+        <div className="My-whole">
             <div className="My-header" onClick={goToHome}>
-                LOGO for customer
+                보따리<img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
             </div>
             <div className="My-topbox">
-                마이페이지
+                내 보따리
             </div>
             <button className="My-back" onClick={goBack}>
                 뒤로가기
@@ -49,11 +50,11 @@ const MyPage = () => {
             </div>
             
             <div className="My-charge" onClick={goToCharge}>
-                금액 충전하기
+                <i className="fas fa-money-bills" style={{position:'relative', top:'3px', marginRight:'10px'}}/> 금액 충전하기
             </div>
             <Link to="/mypage/buylist" >
                 <div className="My-list">
-                    나의 구매목록 확인
+                    <i className="fas fa-table-list" style={{position:'relative', top:'3px', marginRight:'10px'}}/> 나의 구매목록 확인
                 </div>
             </Link>
             

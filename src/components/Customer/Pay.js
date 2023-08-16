@@ -37,7 +37,6 @@ const Pay = () => {
                     결제 금액
                 </div>
                 <div className="Pay-amount-box">
-                    <input className="Pay-amount-input" type="number"/>
                     <input className="Pay-amount-input" type="number" min="0"/>
                     <p className="Pay-amount-won">원</p>
                 </div>       

@@ -17,6 +17,7 @@
     margin-top: 3%;
     margin-left: 5%;
     margin-right: 5%;
+    text-align: center;
 }
 
 .Pay-back {
@@ -72,6 +73,7 @@
     text-align: right;
     margin-left: 1%;
     font-weight: bold;
+    padding-top: 1%;;
 }
 
 .Pay-boundary {
@@ -268,11 +270,14 @@
     background-color: #128100;
     color: white;
     border: none;
-    margin-top: 5%;
-    margin-bottom: 5%;
     padding-left: 60px;
     padding-right: 60px;
     padding-top: 30px;
     padding-bottom: 30px;
     cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }

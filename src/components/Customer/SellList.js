@@ -1,25 +1,30 @@
 import { useState, useEffect } from "react";
-import data from "../../data/data.json";
+import data from "../../data/product.json";
 import Product from "./Product";
 import styles from "../../assets/css/SellList.module.css";
 import user_profile from "../../img/user_profile.png";
+import Dropdown from "./Dropdown";
+import Logo1 from "../../assets/img/Logo1.png"
 
 /* 텍스트 아이콘 사용 */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 function SellList(){
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        setProducts(data.md.clothes);
+        setProducts(data);
     }, []);
+
+    const [view, setView] = useState(false);
 
     return(
         //console.log(products)
         <div className={styles.outline}>
             <div className={styles.header}>
-                <h1>LOGO</h1>
+                <h1>보따리 <img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/></h1>
             </div>
             <div className={styles.user_info}>
                 <div>
@@ -31,17 +36,22 @@ function SellList(){
                     <p className={styles.ps}><strong>주소</strong>: 서울특별시 종로구 성균관로 25-2 (성균관대학교)</p>
                 </div>
             </div>
-            <div className={styles.banner}>
-                상품분류: 의복 {"   "}
+            <ul onClick={() => {setView(!view)}} className={styles.banner}>
+                상품분류: 건강/의료용품 {' '}
+                {view ?<FontAwesomeIcon icon={faCaretUp} /> :<FontAwesomeIcon icon={faCaretDown} />}
+                {view && <Dropdown />}
+            </ul>
+            {/* <div className={styles.banner}>
+                상품분류: 건강/의료용품 {"   "}
                 <FontAwesomeIcon icon={faCaretDown} /> 
-            </div>
+            </div> */}
             <div className={styles.container}>
                 <div className={styles.products}>
                     {products.map((product) => (
                         <Product
-                            key={product.id}
-                            id={product.id}
-                            img={product.img}
+                            key={product.title}
+                            id={product.title}
+                            img={product.src}
                             title={product.title}
                             price={product.price}
                         />

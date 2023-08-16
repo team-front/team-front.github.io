@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import data from "../../data/data.json";
+import data from "../../data/product.json";
 import styles from "../../assets/css/Detail.module.css";
 import { Link } from "react-router-dom";
 import user_profile from "../../img/user_profile.png";
@@ -10,11 +10,11 @@ function Detail(){
 
     const [detail, setDetail] = useState([]);
     useEffect(() => {
-        setDetail(data.md.clothes);
+        setDetail(data);
     }, []);
 
     for (var i=0; i<detail.length; i++){
-        if (`${id}` == detail[i]["id"]) {
+        if (`${id}` == detail[i]["title"]) {
             return <div>
                 <div className={styles.header}>
                     <h1>LOGO</h1>
@@ -31,20 +31,19 @@ function Detail(){
                 </div>
 
                 <div className={styles.left}>
-                    <img src={detail[i]["img"]} alt={detail[i]["title"]} className={styles.detail_img}/>
+                    <img src={detail[i]["src"]} alt={detail[i]["title"]} className={styles.detail_img}/>
                 </div>
                 <div className={styles.right}>
                     <p className={styles.title}>{detail[i]["title"]}</p>
                     <hr />
                     <p className={styles.price}>\ {detail[i]["price"]}원</p>
-                    <p className={styles.label}>색상</p>
                     <p className={styles.color_code}>{detail[i]["color"]}</p>
 
                     <button className={styles.buyBtn}><Link to={'/info'}>
                         전화로 주문하기
                     </Link></button>
                     <br />
-                    <button className={styles.visitBtn}><a href="https://www.coupang.com/" target='_blank'>
+                    <button className={styles.visitBtn}><a href={detail[i]["a"]} target='_blank'>
                         <span className={styles.visitBtnWhite}>웹사이트 방문하기</span>
                     </a></button>
                 </div>
