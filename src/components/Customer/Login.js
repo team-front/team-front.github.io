@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import '../../assets/css/Login.css';
 import Logo1 from "../../assets/img/Logo1.png";
+import CustomerData from "../../data/customerData.json";
 
 function Login() {
 
@@ -19,9 +20,9 @@ function Login() {
         navigate("/signup");
     }
 
-    const [name, setName] = useState("");
-    const [pnumber, setPnumber] = useState(0);
-    const [cnumber, setCnumber] = useState(0);
+    const [name, setName] = useState();
+    const [pnumber, setPnumber] = useState();
+    const [cnumber, setCnumber] = useState();
 
     const handleNameInput = (event) => {
         const value = event.target.value;
@@ -39,6 +40,54 @@ function Login() {
         setCnumber(value);
     };
 
+    const [randCnum, setRandCnum] = useState();
+    const [sendCnum, setSendCnum] = useState(0);
+    // const [login, setLogin] = useState(0);
+
+    const sendCnumber = () => {
+        const definedRandCnum = Math.floor(Math.random() * 9000)+1000;
+        setRandCnum(definedRandCnum);
+        alert("인증번호 : " + definedRandCnum + "\n" + "(위와 같이 전화번호로 인증번호가 전송될 예정입니다.)");
+        setSendCnum(1);
+    }
+
+    const handleLogin = () => {
+        if (!name){
+            alert("성함을 입력해주세요.");
+        }
+        else if(!pnumber){
+            alert("전화번호를 입력해주세요.");
+        }
+        else if(!cnumber){
+            alert("문자로 전송된 인증번호를 입력해주세요.");
+        }
+        else if(parseInt(cnumber,10) != randCnum){
+            alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
+        }
+        else{
+            if(localStorage.getItem("CustomerData")==undefined){
+                const JsonCusData = JSON.stringify(CustomerData.CustomerData);
+                localStorage.setItem("CustomerData", JsonCusData);
+            }
+            const presentCustomerData = JSON.parse(localStorage.getItem("CustomerData"));
+            const signedCus = presentCustomerData.filter(customer => customer[0]==name && customer[1]==pnumber);
+
+            // presentCustomerData.map((customer)=>{
+            //     if(customer[0]==name && customer[1]==pnumber){
+            //         setLogin(1);
+            //     }
+            // });
+            if(signedCus.length != 0){
+                // setLogin(0);
+                setSendCnum(0);
+                navigate('/homeLog');
+            }
+            else{
+                alert("등록된 회원이 아닙니다. 다시 입력해주세요.\n**아래 회원가입 버튼 또는 전화 문의를 통해 회원가입을 진행해주세요.**")
+            }
+        }
+    }
+
   return (
     <div className="Lo-whole">
         <div className="Lo-header" onClick={goToHome}>
@@ -51,7 +100,7 @@ function Login() {
             <button className="Lo-back" style={{marginLeft: '5%'}} onClick={goBack}>
                 뒤로가기
             </button>
-            <button className="Lo-back" onClick={goBack}>
+            <button className="Lo-back" onClick={goToSignup}>
                 회원가입
             </button>
         </div>
@@ -76,18 +125,24 @@ function Login() {
                 <div className="Lo-numbertag">
                     전화번호
                 </div>
-                <input className="Lo-numberinput" type='number' onChange={(event)=> handleCnumberInput(event)}/>
+                <input className="Lo-numberinput" type='text' onChange={(event)=> handlePnumberInput(event)} placeholder="000-0000-0000"/>
+                <button style={{marginLeft: '5px'}} /* , position: 'relative', marginRight: '-185px' */
+                    onClick={()=>{sendCnumber()}} disabled={pnumber?false:true}>
+                    {sendCnum?'인증번호 재전송':'인증번호 전송'}
+                </button>
             </div>
 
             <div className="Lo-cert">
                 <div className="Lo-certtag">
                     인증번호
                 </div>
-                <input className="Lo-certinput" type='number' onChange={(event)=> handlePnumberInput(event)}/>
+                <input className="Lo-certinput" type='text' onChange={(event)=> handleCnumberInput(event)}/>
             </div>
             
-            <button className="Lo-login">
-                <Link to="/homeLog" style={{color:"white"}}>로그인</Link>
+            <button className="Lo-login" onClick={()=>{handleLogin()}}>
+                {/* <Link to="/homeLog" style={{color:"white"}}> */}
+                    로그인
+                {/* </Link> */}
             </button>
            
             <div style={{textAlign:"center", paddingBottom : "70px"}}>

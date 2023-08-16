@@ -37,7 +37,6 @@
 }
 
 .Su-middle {
-
 }
 
 .Su-name {
@@ -107,6 +106,7 @@
 }
 
 .Su-addinput1 {
+    display: block;
     width: 30%;
 }
 
@@ -125,6 +125,7 @@
 
 .Su-addinput2 {
     width: 30%;
+    display: block;
 }
 
 .Su-signup {
@@ -145,3 +146,12 @@
     text-align: center;
 }
 
+.Btn-Su-signup{
+    color:white;
+    font-weight: normal;
+}
+
+.Btn-Su-signup:hover{
+    color:white;
+    font-weight: bold;
+}
