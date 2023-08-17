@@ -63,7 +63,7 @@ function PurchaseHistoryList(props,){
     const restMoney = location.state.restMoney;
     const cusIndex = location.state.index;
 
-    const choicedCustomerBuyData = PurchaseData.PurchaseData.filter(data=>data.name == name);
+    const choicedCustomerBuyData = PurchaseData.PurchaseData.filter(data=>data.name == name && data.phone == phone);
     const [dummyPurchaseData, updateDummyPurchaseData] = useState(localStorage.getItem(name+"BuyData") != undefined ? JSON.parse(localStorage.getItem(name+"BuyData")):choicedCustomerBuyData[0].buyList);
 
     useEffect(()=>{
@@ -89,6 +89,7 @@ function PurchaseHistoryList(props,){
 
     const dummyColumns = ["구매번호","구매일자", "상품명", "배송지", "결제액", "결제상태","구매대행", "교환/환불"];
 
+    const [purchaseNum, setPurchaseNum] = useState();
     const [purchaseDate, setPurchaseDate] = useState(0);
     const [product, setProduct] = useState();
     const [address, setAddress] = useState();
@@ -112,7 +113,8 @@ function PurchaseHistoryList(props,){
     console.log(setDone &&!updateDone && purchaseDate && product && price && address && payState != "결제상태" && insPurState != "구매대행상태");
 
     if(setDone && !updateDone){
-        updateDummyPurchaseData([...dummyPurchaseData,[purchaseDate, product, address, price, payState, insPurState]])
+        console.log("payState",payState, insPurState);
+        updateDummyPurchaseData([[purchaseNum,purchaseDate, product, address, price, payState, insPurState],...dummyPurchaseData])
         setUpdateDone(1);
         setSetDone(0);
         setPayState("구매상태");
@@ -209,8 +211,8 @@ function PurchaseHistoryList(props,){
 
             {addCDDisplay ? <AddPurchaseData 
                 setPurchaseDate={setPurchaseDate} setProduct={setProduct} setPrice={setPrice} setAddCDDisplay={setAddCDDisplay}
-                setAddress={setAddress} setPayState={setPayState} setInsPurState={setInsPurState} setUpdateDone={setUpdateDone}
-                purchaseDate={purchaseDate} product={product} price={price} 
+                setAddress={setAddress} setPayState={setPayState} setInsPurState={setInsPurState} setUpdateDone={setUpdateDone} setPurchaseNum={setPurchaseNum}
+                purchaseDate={purchaseDate} product={product} price={price} purchaseNum={purchaseNum}
                 address={address} payState={payState} insPurState={insPurState} setSetDone={setSetDone}/> : ""}
         </div>
     )

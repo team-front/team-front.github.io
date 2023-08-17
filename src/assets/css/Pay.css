@@ -199,6 +199,7 @@
 }
 
 .Pay-info-name {
+    margin-right: 10px;
 }
 
 .Pay-info-nametag {
@@ -208,7 +209,7 @@
 
 .Pay-info-nameinput {
     border: 1px solid #A3A3A3;
-    width: 350px;
+    /* width: 350px; */
     text-align: left;
     font-size: 24px;
     margin-top: 20px;
@@ -230,7 +231,7 @@
 
 .Pay-info-numberinput {
     border: 1px solid #A3A3A3;
-    width: 350px;
+    /* width: 350px; */
     text-align: left;
     font-size: 24px;
     margin-top: 20px;

@@ -119,6 +119,7 @@ function SignUp() {
             };
             const JsonPurData = JSON.stringify([]);
             localStorage.setItem(name+"BuyData", JsonPurData);
+            localStorage.setItem(name+"chargedList", JsonPurData);
             setSignUpFin(0);
             setSendCnum(0);
             navigate('/login');

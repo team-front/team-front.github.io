@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import React from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
+import { React, useState } from 'react';
 import List from './List';
+import PurchaseData from '../../data/purchaseDataList.json';
 
 import '../../assets/css/Charge.css';
 
@@ -8,17 +9,31 @@ import '../../assets/css/Charge.css';
 const Charge = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const name = location.state.name;
+    const pnumber = location.state.pnumber;
 
     const goBack = () => {
-        navigate("/mypage");
+        navigate("/mypage", { state :{name : name, pnumber : pnumber} });
     }
 
+    const presentCustomerData = JSON.parse(localStorage.getItem("CustomerData"));
+    const signedCus = presentCustomerData.filter(customer => customer[0]==name && customer[1]==pnumber);
+    const signedCusIndex = presentCustomerData.indexOf(signedCus[0]);
+
+    const choicedCustomerBuyData = PurchaseData.PurchaseData.filter(data=>data.name == name && data.phone == pnumber);
+    if(localStorage.getItem(name+"chargedList") == undefined &&choicedCustomerBuyData.length != 0) {localStorage.setItem(name+"chargedList", JSON.stringify(choicedCustomerBuyData[0].chargedList));};
+    const signedCusChargedList = JSON.parse(localStorage.getItem(name+"chargedList"));
+    
+    console.log(signedCusChargedList);
+
     const goToPay = () => {
-        navigate("/pay");
+        navigate("/pay", { state :{name : name, pnumber : pnumber} });
     }
 
     const goToHome = () => {
-        navigate("/");
+        navigate("/", { state :{name : name, pnumber : pnumber} });
     }
 
     return (
@@ -38,7 +53,7 @@ const Charge = () => {
                         현재 잔액
                     </div>
                     <div className="Ch-money">
-                        10,000 원
+                        {signedCus[0][3]}원
                     </div>
                 </div>
                 <button className="Ch-button" onClick={goToPay}>
@@ -51,7 +66,7 @@ const Charge = () => {
                 충전 및 사용 내역
             </div>
             <div className="Ch-list">
-                <List />
+                <List signedCusChargedList={signedCusChargedList}/>
             </div>
             
         </div>

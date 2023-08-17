@@ -80,7 +80,8 @@ function Login() {
             if(signedCus.length != 0){
                 // setLogin(0);
                 setSendCnum(0);
-                navigate('/homeLog');
+                localStorage.setItem("Login", 1);
+                navigate('/', { state :{name : name, pnumber : pnumber} });
             }
             else{
                 alert("등록된 회원이 아닙니다. 다시 입력해주세요.\n**아래 회원가입 버튼 또는 전화 문의를 통해 회원가입을 진행해주세요.**")

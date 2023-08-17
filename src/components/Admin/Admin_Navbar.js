@@ -6,8 +6,10 @@ import "../../assets/js/datatables-simple-demo.js";
 import logo from '../../assets/img/logo.png';
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function AdminNavbar(props){
+
+    const navigate = useNavigate();
 
     const [NavDropDisplay, setNavDropDisplay] = useState("none");
 
@@ -29,6 +31,11 @@ function AdminNavbar(props){
         else{
             props.setNavbarDisplay(1);
         }
+    }
+
+    const Logout = ()=> {
+        localStorage.setItem("Login",0); 
+        navigate('/');
     }
 
     return(
@@ -56,7 +63,7 @@ function AdminNavbar(props){
                         <ul className="collapse dropdown-menu dropdown-menu-end" style={{display:NavDropDisplay}}>
                             <li><span className="dropdown-item2" href="#!">관리자 계정</span></li>
                             <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item3" href="#!">Logout</a></li>
+                            <li><span className="dropdown-item3" onClick={()=>{Logout()}}>Logout</span></li>
                         </ul>
                         </div>
                     </li>

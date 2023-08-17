@@ -1,14 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { React, useState } from 'react';
 import '../../assets/css/Pay.css';
+import PurchaseData from "../../data/purchaseDataList.json";
 
 const Pay = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const name = location.state.name;
+    const pnumber = location.state.pnumber;
+    const [chargeMoney, setChargeMoney] = useState(0);
+
     const goToCharge = () => {
-        navigate("/charge");
+        navigate("/charge", { state :{name : name, pnumber : pnumber} });
     }
     const goToHome = () => {
-        navigate("/");
+        navigate("/", { state :{name : name, pnumber : pnumber} });
     }
     const paymethod = [
         '신용/체크카드',
@@ -17,10 +24,45 @@ const Pay = () => {
         '카카오페이'
     ];
     const [method, setMethod] = useState('');
-    const handleClick = () => {
-        setMethod();
+    const handleClick = (selectedPayMethod) => {
+        setMethod(selectedPayMethod);
         // 버튼 선택
     };
+
+    const presentCustomerData = JSON.parse(localStorage.getItem("CustomerData"));
+    const signedCus = presentCustomerData.filter(customer => customer[0]==name && customer[1]==pnumber);
+    const signedCusIndex = presentCustomerData.indexOf(signedCus[0]);
+
+    const handlePayAmount = (event) => {
+        setChargeMoney(event.target.value);
+        console.log(chargeMoney);
+    }
+
+    const choicedCustomerBuyData = PurchaseData.PurchaseData.filter(data=>data.name == name && data.phone == pnumber);
+    if(localStorage.getItem(name+"chargedList") == undefined && choicedCustomerBuyData.length != 0) {localStorage.setItem(name+"chargedList", JSON.stringify(choicedCustomerBuyData[0].chargedList));};
+    const signedCusChargedList = JSON.parse(localStorage.getItem(name+"chargedList"));
+
+    const amount_c = parseInt(chargeMoney).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    console.log(amount_c);
+    let now = new Date();
+    const month = (now.getMonth()+1)<10 ? '0'+(now.getMonth()+1) : now.getMonth()+1
+    const now_date = now.getFullYear()+'.'+month+'.'+now.getDate();
+
+    const handleCharging = ()=>{
+        presentCustomerData.splice(signedCusIndex, 1, [name, pnumber, signedCus[0][2], parseInt(signedCus[0][3],10)+parseInt(chargeMoney)])
+        localStorage.setItem("CustomerData", JSON.stringify(presentCustomerData));
+        localStorage.setItem(name+"chargedList", JSON.stringify(
+            [{title: `충전 (${method})`,
+            amount: "+ "+amount_c,
+            amount: "+ "+chargeMoney,
+            date: now_date}, ...signedCusChargedList, 
+            ]));
+        navigate("/charge", { state :{name : name, pnumber : pnumber} });
+    }
+
+    
+    
+
     return (
         <div>
             <div className="Pay-header" onClick={goToHome}>
@@ -37,7 +79,7 @@ const Pay = () => {
                     결제 금액
                 </div>
                 <div className="Pay-amount-box">
-                    <input className="Pay-amount-input" type="number" min="0"/>
+                    <input className="Pay-amount-input" type="number" min="0" onChange={(event)=>{handlePayAmount(event)}} placeholder="0"/>
                     <p className="Pay-amount-won">원</p>
                 </div>       
             </div>
@@ -47,18 +89,18 @@ const Pay = () => {
                     결제 수단
                 </div>
                 <div className="Pay-method-ubuttons">
-                    <button className="Pay-method-card" onClick={handleClick}>
+                    <button className="Pay-method-card" onClick={()=>handleClick(paymethod[0])}>
                         {paymethod[0]}
                     </button>
-                    <button className="Pay-method-nobook" onClick={handleClick}>
+                    <button className="Pay-method-nobook" onClick={()=>handleClick(paymethod[1])}>
                         {paymethod[1]}
                     </button>
                 </div>
                 <div className="Pay-method-dbuttons">
-                    <button className="Pay-method-naver" onClick={handleClick}>
+                    <button className="Pay-method-naver" onClick={()=>handleClick(paymethod[2])}>
                         {paymethod[2]}
                     </button>
-                    <button className="Pay-method-kakao" onClick={handleClick}>
+                    <button className="Pay-method-kakao" onClick={()=>handleClick(paymethod[3])}>
                         {paymethod[3]}
                     </button>
                 </div>
@@ -74,20 +116,20 @@ const Pay = () => {
                     </div>
                 </div>
                 <div className="Pay-info-bottom">
-                    <div className="Pay-info-name">
+                    <div className="Pay-info-name col-6">
                         <div className="Pay-info-nametag">
                             이름
                         </div>
                         <div className="Pay-info-nameinput">
-                            김OO
+                            <span>{name}</span>
                         </div>
                     </div>
-                    <div className="Pay-info-number">
+                    <div className="Pay-info-number col-6">
                         <div className="Pay-info-numbertag">
                             전화번호
                         </div>
                         <div className="Pay-info-numberinput">
-                            01012345678
+                            <span>{pnumber}</span>
                         </div>
                     </div>
                 </div>
@@ -98,10 +140,10 @@ const Pay = () => {
                     충전 후 잔액
                 </div>
                 <div className="Pay-balance-money">
-                    20,000 원
+                    {parseInt(signedCus[0][3],10)+parseInt(chargeMoney)}원
                 </div>
             </div>
-            <button className="Pay-pay">
+            <button className="Pay-pay" onClick={()=>{handleCharging()}}>
                 결제하기
             </button>
             

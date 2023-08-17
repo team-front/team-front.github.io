@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 
 
 function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, setInsPurState, setPayState,
-                            setSetDone, setAddCDDisplay, setUpdateDone, purchaseDate, product, address, price, insPurState, payState}){
+        setPurchaseNum, setSetDone, setAddCDDisplay, setUpdateDone, purchaseDate, product, address, price, insPurState, payState, purchaseNum}){
 
     // const [purchaseDate, setPurchaseDate] = useState("");
     // const [product, setProduct] = useState("");
@@ -55,13 +55,19 @@ function AddPurchaseData({setPurchaseDate, setProduct, setAddress, setPrice, set
                                 <div className="card-body">
                                     {/* <form> "구매일자", "상품명", "배송지", "결제액", "결제상태", "구매대행" */}
                                         <div className="row mb-3">
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
+                                                <div className="form-floating mb-3 mb-md-0">
+                                                    <input className="form-control" id="inputPurchaseDate" type="text" placeholder="구매일자" onChange={(e)=>setPurchaseNum(e.target.value)} />
+                                                    <label htmlFor="inputPurchaseDate">구매번호</label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-4">
                                                 <div className="form-floating mb-3 mb-md-0">
                                                     <input className="form-control" id="inputPurchaseDate" type="text" placeholder="구매일자" onChange={(e)=>setPurchaseDate(e.target.value)} />
                                                     <label htmlFor="inputPurchaseDate">구매일자(0000-00-00)</label>
                                                 </div>
                                             </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-4">
                                                 <div className="form-floating">
                                                     <input className="form-control" id="inputProduct" type="text" placeholder="상품명" onChange={(e)=>setProduct(e.target.value)}/>
                                                     <label htmlFor="inputProduct">상품명</label>

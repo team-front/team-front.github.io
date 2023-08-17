@@ -9,7 +9,7 @@
 
 .Home{
   overflow: auto;
-  position: relative;
+  /* position: relative; */
 }
 .Home::before {
     text-align: center;
@@ -94,6 +94,21 @@
     font-size:20px;
   }
 
+  .logoutDiv{
+    text-align: center;
+    margin: 2% auto;
+    border-radius: 50%;
+
+    font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .logout{
+    font-size: 25px;
+    text-align: center;
+  }
+
   .Home-line {
     color: transparent;
     height: 1px;
@@ -127,7 +142,7 @@
     background-color: transparent;
     width: 20%;
     height: 20px;
-    font-size: 10%;
+    font-size: 9%;
     /* font-weight: bold; */
     padding-top: 10%;
     padding-bottom: 120px;
@@ -176,7 +191,7 @@
     background-color: transparent;
     width: 19%;
     height: 19px;
-    font-size: 10%;
+    font-size: 9%;
     /* font-weight: bold; */
     padding-top: 11.5%;
     padding-bottom: 120px;
@@ -203,7 +218,7 @@
     background-color: transparent;
     width: 20%;
     height: 20px;
-    font-size: 10%;
+    font-size: 9%;
     /* font-weight: bold; */
     padding-top: 10%;
     padding-bottom: 110px;
