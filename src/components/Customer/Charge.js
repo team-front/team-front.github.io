@@ -1,9 +1,13 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { React, useState } from 'react';
 import List from './List';
+import Logo1 from "../../assets/img/Logo1.png";
+import Callcenter from "./Callcenter";
+import backlogo from '../../assets/img/back.png'
 import PurchaseData from '../../data/purchaseDataList.json';
 
 import '../../assets/css/Charge.css';
+import LogoutBtn from "./LogoutBtn";
 
 
 const Charge = () => {
@@ -37,14 +41,17 @@ const Charge = () => {
     }
 
     return (
-        <div>
+        <div className="Ch-container">
+            <LogoutBtn/>
+            <Callcenter/>
             <div className="Ch-header" onClick={goToHome}>
-                LOGO for customer
+                <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
             </div>
             <div className="Ch-topbox">
                 금액 충전하기
             </div>
             <button className="Ch-back" onClick={goBack}>
+            <img src={backlogo}/>
                 뒤로가기
             </button>
             <div className="Ch-middlebox">

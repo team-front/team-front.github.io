@@ -1,9 +1,10 @@
 .product {
     width: 250px;
     margin: 10px;
-    border: 1px solid grey;
     border-radius: 5px;
     padding: 10px 10px 15px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 3px #DDDDDD;
 }
 
 .product_img {
@@ -30,6 +31,7 @@
 
 .product_btn {
     background-color: #B2C3B2;
+    border: none;
     border-radius: 5px;
     font-weight: bold;
     transition: .3s ease;
@@ -41,10 +43,16 @@
 
 .product_btn:hover{
     background-color: #668066;
+    color: white;
     transition: .3s ease;
+
 }
 
 a{
     text-decoration: none;
     color: black;
+}
+
+.product_btn Link{
+    text-decoration: none;
 }

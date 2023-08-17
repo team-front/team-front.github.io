@@ -1,0 +1,21 @@
+.container{
+    width: 85px;
+    text-align: center;
+    cursor: pointer;
+    border: 0px solid #A3A3A3;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 7px;
+    border-radius: 15px;
+    margin-left: 10px;
+    box-shadow : 2px 2px 2px 2px rgb(212, 212, 212);
+    position: absolute;
+    top: 30px;
+    cursor: pointer;
+    right: 30px;
+  }
+  
+  .logout{
+    position: relative;
+  }

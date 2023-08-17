@@ -1,14 +1,110 @@
-.Su-header {
-    height: 8%;
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bagel+Fat+One&family=Gugi&family=Jua&family=Noto+Sans+KR&display=swap');
+
+
+.so-whole{
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.so-whole::before {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/BackImg.jpeg");
+    opacity: 0.7;
+    background-repeat : no-repeat center;
+    background-size: cover;
+    position:fixed;
+    overflow:hidden;
+
+    -webkit-filter: blur(1px); 
+    -moz-filter: blur(1px); 
+    -o-filter: blur(1px); 
+    -ms-filter: blur(1px); 
+    filter: blur(1px);
+    z-index: -1; 
+    content: "";
+  }
+
+  .My-header {
+    /* height: 8%;
     margin-top: 2%;
     font-size: 50px;
     color: black;
     text-align: left;
     margin-left: 5%;
-    cursor: pointer;
+    cursor: pointer; */
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+
+    font-size: 70px;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Jua', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%;
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 40%;
   }
 
-.Su-topbox {
+/* .Lo-back {
+    width: 80px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 90%;
+    margin-left: 5%;
+    border: 1px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+}
+
+
+.Lo-header {
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+
+    font-size: 70px;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    /* font-family: 'Nanum Pen Script', cursive;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30%; */
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    /* border-radius: 40%;
+  }  */
+
+.so-topbox {
     background-color: #2E4E31;
     color: white;
     font-size: 25px;
@@ -20,7 +116,68 @@
     text-align: center;
 }
 
-.Su-back {
+.so-back {
+    width: 110px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5%;
+    border: 0px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+    box-shadow : 2px 2px 2px 2px rgb(212, 212, 212);
+}
+
+.so-back img{
+    height: 20px;
+    margin-right: 10px;
+}
+
+.so-header {
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+    font-size: 6vw;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Jua', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30vw;
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 40%;
+  }
+
+
+
+.so-topbox {
+    background-color: #2E4E31;
+    color: white;
+    font-size: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+/* .Lo-back {
     margin-top: 2%;
     text-align: left;
     cursor: pointer;
@@ -34,12 +191,37 @@
     padding-left: 7px;
     padding-right: 7px;
     border-radius: 15px;
+} */
+
+.so-signup {
+    justify-content: center;
+    display: flex;
+    align-items: right;
+    margin-left: 70%;
 }
 
-.Su-middle {
+.so-signment{
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-.Su-name {
+.so-signbutton {
+    margin-left: 2%;
+    font-size: 20px;
+    cursor: pointer;
+    border: 1px solid #A3A3A3;
+    background-color: #B2C3B2;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+}
+
+
+
+.so-name {
     font-size: 26px;
     justify-content: center;
     display: flex;
@@ -47,34 +229,48 @@
     margin-top: 3%;
 }
 
-.Su-nametag {
+.so-nametag {
     margin-right: 220px;
     font-weight: 600;
     margin-left: 28px;
 }
 
-.Su-nameinput {
+.so-nameinput {
     width: 30%;
+    padding-left: 10px;
 }
 
-.Su-number {
+.so-number {
     font-size: 26px;
     justify-content: center;
     display: flex;
     align-items: center;
     margin-top: 3%;
+
 }
 
-.Su-numbertag {
+.so-numbertag {
     margin-right: 200px;
     font-weight: 600;
+    position: relative;
+    left:20px;
 }
 
-.Su-numberinput {
+.so-number input{
+    padding-left:10px;
+}
+
+.so-number input::placeholder{
+    text-align: right;
+    padding-right : 5px;
+}
+
+.so-numberinput {
     width: 30%;
+    margin-left: 20px;
 }
 
-.Su-cert {
+.so-cert {
     font-size: 26px;
     justify-content: center;
     display: flex;
@@ -82,60 +278,49 @@
     margin-top: 3%;
 }
 
-.Su-certtag {
-    margin-right: 200px;
+.so-certtag {
+    margin-right: 180px;
     color: #0046CD;
     font-weight: 600;
+    padding-left:20px;
 }
 
-.Su-certinput {
+.so-certinput {
     width: 30%;
+    margin-left:20px;
+    padding-left:10px;
 }
 
-.Su-add {
+.so-address {
     font-size: 26px;
     justify-content: center;
     display: flex;
     align-items: center;
     margin-top: 3%;
+    transform: translateX(-57px);
 }
 
-.Su-addtag {
-    margin-right: 200px;
+.so-addresstag {
+    margin-right: 220px;
     font-weight: 600;
+    transform: translateX(20px);
 }
 
-.Su-addinput1 {
-    display: block;
+.so-addressinput {
     width: 30%;
+    margin-left:-60px;
+    padding-left:10px;
 }
 
-.Su-add2 {
-    font-size: 26px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    margin-top: 1%;
-}
 
-.Su-addtag2 {
-    margin-right: 305px;
-    font-weight: 600;
-}
-
-.Su-addinput2 {
-    width: 30%;
-    display: block;
-}
-
-.Su-signup {
+.so-login {
     font-size: 25px;
     font-weight: 600;
     background-color: #2F4E2F;
     color: white;
     border: none;
-    padding-left: 45px;
-    padding-right: 45px;
+    padding-left: 60px;
+    padding-right: 60px;
     padding-top: 25px;
     padding-bottom: 25px;
     cursor: pointer;
@@ -146,12 +331,53 @@
     text-align: center;
 }
 
-.Btn-Su-signup{
-    color:white;
-    font-weight: normal;
+.so-admin{
+    font-size: 20px;
+    text-align: center;
+    text-decoration : underline;
 }
 
-.Btn-Su-signup:hover{
-    color:white;
+.Link-so-admin:hover{
+    color:black;
     font-weight: bold;
+}
+
+
+.so-sendphone, .so-auth{
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    border: 0px solid #A3A3A3;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 7px;
+    border-radius: 15px;
+    margin-left: -10px;
+    box-shadow : 2px 2px 2px 2px rgb(212, 212, 212);
+}
+
+.so-none{
+    width: 85px;
+    margin-left: 10px;
+    padding: 7px;
+}
+
+input{
+    border: none;
+}
+
+.so-clicked{
+    background-color: #2E4E31;
+    color: white;
+}
+.forTimer{
+    position: relative;
+}
+.timer{
+    margin-left: 10px;
+    position: absolute;
+    top: 5px;
+
+    
 }

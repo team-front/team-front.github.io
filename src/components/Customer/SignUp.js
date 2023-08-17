@@ -4,6 +4,8 @@ import '../../assets/css/SignUp.css';
 import "../../assets/css/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomerData from "../../data/customerData.json";
+import Logo1 from "../../assets/img/Logo1.png";
+import backlogo from '../../assets/img/back.png';
 
 
 function SignUp() {
@@ -73,7 +75,7 @@ function SignUp() {
         else if(!cnumber){
             alert("문자로 전송된 인증번호를 입력해주세요.");
         }
-        else if(parseInt(cnumber,10) != randCnum){
+        else if(certify){
             alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
         }
         else if(address == ""){
@@ -127,59 +129,135 @@ function SignUp() {
     }, [signUpFin]);
 
 
+    let [timer, setTimer] = useState('00:00')
+
+    let time = 60000;
+    let min;
+    let sec;
+
+
+
+    const [clicked, setClicked] = useState(false)
+    const [isStarted, setIsStarted] = useState(false);
+    
+    const handleStarted = ()=>{
+        if(isStarted){
+            setIsStarted(false);
+        }
+        else{
+            setIsStarted(true);
+        }
+    }
+    const clicking = () => {
+
+            setClicked(true);
+            alert('전송되었습니다.')
+            let timeMaker = 
+            setInterval(function(){
+                time = time-1000;
+                if(time >= 0 && isStarted===false){
+                min = Math.floor(time/60000);
+                sec = (time%60000)/1000;
+                setTimer(min+'0:'+sec)}
+                else{
+                    clearInterval(timeMaker);
+                }
+            }, 1000)
+            setTimeout(function(){
+                setClicked(false)
+                setTimer('00:00')
+                time = 60000;
+                clearInterval(timeMaker)
+            }, 60000);
+        }
+
+    if (clicked===false){
+ 
+    }
+
+    const [certify, setCertify]=useState(false);
+
+    const handleCertify = () => {
+        if(parseInt(cnumber,10) != randCnum){
+            alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
+        }
+        else{
+            setCertify(true);
+        }
+    }
+
+
   return (
-    <div>
-        <div className="Su-header" onClick={goToHome}>
-            LOGO for customer
+    <div className="so-whole">
+        <div className="My-header" onClick={goToHome} style={{cursor: 'pointer'}}>
+            <span>보따리</span>
+            <img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
         </div>
-        <div className="Su-topbox">
+        <div className="My-topbox" style={{textAlign:"center"}}>
             회원가입
         </div>
-        <button className="Su-back" onClick={goBack}>
-            뒤로가기
-        </button>
-        <div className="Su-middle">
-            <div className="Su-name">
-                <div className="Su-nametag" style={{textAlign:'right'}}>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+            <button className="so-back" style={{marginLeft: '5%'}} onClick={goBack}>
+                <img src={backlogo}/>
+                뒤로가기
+            </button>
+        </div>
+        <div className="so-middle" style={{marginBotton: "50px"}}>
+            <div className="so-name">
+                <div className="so-nametag">
                     이름
                 </div>
-                <input className="Su-nameinput" type='string' onChange={(event)=> handleNameInput(event)}/>
+                
+                <input className="so-nameinput" type='string' onChange={(event)=> handleNameInput(event)}/>
+                <div className="so-none"></div>
             </div>
 
-            <div className="Su-number">
-                <div className="Su-numbertag">
+            <div className="so-number">
+                <div className="so-numbertag">
                     전화번호
                 </div>
-                <input className="Su-numberinput" type='text' onChange={(event)=> handlePnumberInput(event)} placeholder="000-0000-0000"/>
-                <button style={{marginLeft: '5px'}} /* , position: 'relative', marginRight: '-185px' */
-                    onClick={()=>{sendCnumber()}} disabled={pnumber?false:true}>
-                    {sendCnum?'인증번호 재전송':'인증번호 전송'}
-                </button>
+                <input className="so-numberinput" type='text' onChange={(event)=> handlePnumberInput(event)} placeholder="000-0000-0000"/>
+                <div className="forTimer">
+                    <button className={clicked===false?"so-auth so-sendphone":"so-auth so-sendphone so-clicked"} style={{marginLeft: '12px'}} /* , position: 'relative', marginRight: '-185px' */
+                        onClick={()=>{handleStarted();sendCnumber(); clicking();}} disabled={pnumber?false:true}>
+                        {sendCnum?'인증번호 재전송':'인증번호 전송'}
+                    </button>
+                    <span className="timer">{timer}</span>
+                </div>
             </div>
 
-            <div className="Su-cert">
-                <div className="Su-certtag">
+            <div className="so-cert">
+                <div className="so-certtag">
                     인증번호
                 </div>
-                <input className="Su-certinput" type='text' onChange={(event)=> handleCnumberInput(event)}/>
+                <input className="so-certinput" type='text' onChange={(event)=> handleCnumberInput(event)}/>
+                <button className="so-auth" disabled={certify === false ? false:true}
+                    style={{marginLeft:'12px'}} onClick={()=>{handleCertify()}}>{certify === false ? "인증" : "인증완료" }</button>
+                
             </div>
 
-            <div className="Su-add">
-                <div className="Su-addtag">
+            <div className="so-address">
+                <div className="so-addresstag">
                     배송주소(기본)
                 </div>
-                <input className="Su-addinput1" type='string' onChange={(event)=> handleAddressInput(event)}/>
+                <input className="so-addressinput" type='string' onChange={(event)=> handleAddressInput(event)}/>
             </div>
             {/* <div className="Su-add2">
                 <div className="Su-addtag2"/>
                 <input className="Su-addinput2" type='string' onChange={(event)=> handleAddressInput(event)}/>
             </div> */}
 
-            <button className="Su-signup" onClick={()=>{handleSignUp()}}>
+            <button className="so-login" onClick={()=>{handleSignUp()}}>
                 {/* <Link className="Btn-Su-signup" to="/login"> */}
                     회원가입
                 {/* </Link> */}
             </button>
+
+            <div style={{textAlign:"center", paddingBottom : "70px"}}>
+                <span className="so-admin">
+                    <Link className="Link-lo-admin" to="/login">로그인</Link>
+                </span>
+            </div>
             </div>
         </div>
   );

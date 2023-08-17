@@ -1,0 +1,21 @@
+.fix{
+    position: fixed;
+    width: 150px;
+    right: 10px;
+    bottom: 10px;
+    background-color:#eaffea;
+    font-family: 'Jua', sans-serif;
+    border-radius: 150px;
+    padding: 20px;
+
+}
+
+.fix img{
+    width: 90%;
+}
+
+.text{
+
+    padding: 5px;
+
+}

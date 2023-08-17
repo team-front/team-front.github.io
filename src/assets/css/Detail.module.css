@@ -1,4 +1,37 @@
-.header {
+.outline{
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.outline::before {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/BackImg.jpeg");
+    opacity: 0.7;
+    background-repeat : no-repeat center;
+    background-size: cover;
+    position:fixed;
+    overflow:hidden;
+
+    -webkit-filter: blur(1px); 
+    -moz-filter: blur(1px); 
+    -o-filter: blur(1px); 
+    -ms-filter: blur(1px); 
+    filter: blur(1px);
+    z-index: -1; 
+    content: "";
+  }
+
+  .container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+  
+  .header {
     margin: 30px;
 }
 
@@ -13,6 +46,7 @@
     margin: 30px auto;
     padding: 10px 20px;
     font-size: 18px; 
+    background-color: white;
 }
 
 .ps{
@@ -28,8 +62,8 @@
 
 .detail_img{
     margin: 30px auto auto auto;
+    box-shadow: 0px 0px 5px 3px #DDDDDD;
     display: block;
-    border: 2px solid black;
     width: 75%;
     height: 75%;
 }
@@ -44,13 +78,13 @@
 .buyBtn {
     background-color: #B2C3B2;
     border-radius: 5px;
+    border: none;
     width: 90%;
     padding: 20px;
     margin: auto;
     display: block;
     font-size: 18px;
     font-weight: 800;
-    transition: .3s ease;
 }
 
 .buyBtn:hover{
@@ -67,6 +101,11 @@
     display: block;
     font-size: 18px;
     font-weight: 800;
+    transition: .3s ease;
+    border: none;
+}
+.visitBtn:hover{
+    background-color: #668066;
     transition: .3s ease;
 }
 
@@ -93,4 +132,10 @@
     margin-top: 15px;
     margin-bottom: 35px;
     text-align: center;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

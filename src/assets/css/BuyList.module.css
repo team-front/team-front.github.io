@@ -1,6 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;  /*줄바꿈*/
+    justify-content: center;
+    max-width: 1080px;
+    align-items: center;
+
+}
+
+.outline{
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+}
+
+.outline::before {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/BackImg.jpeg");
+    opacity: 0.7;
+    background-repeat : no-repeat center;
+    background-size: cover;
+    position:fixed;
+    overflow:hidden;
+
+    -webkit-filter: blur(1px); 
+    -moz-filter: blur(1px); 
+    -o-filter: blur(1px); 
+    -ms-filter: blur(1px); 
+    filter: blur(1px);
+    z-index: -1; 
+    content: "";
+  }
+
 .banner {
     width:95%;
-    /* width: 1160px; */
     padding: 15px;
     background-color:#2E4E31;
     color:white;
@@ -12,7 +52,78 @@
 }
 
 .header {
-    margin: 30px;
+    text-align: center;
+    height: 5%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    
+    margin-top : 20px;
+    text-align: center;
+    font-size: 6vw;
+    background-color: transparent;
+    color: black;
+
+    /* font-family: 'Black Han Sans', sans-serif; */
+    font-family: 'Jua', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    width: 30vw;
+    
+    /* background-color: rgba(255, 255, 255, 0.6); */
+    border-radius: 40%;
+  }
+
+.user_info{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border: 2px solid #DDDDDD;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 3px #DDDDDD;
+    width: 95%;
+    margin: 30px auto;
+    padding: 10px 20px;
+    font-size: 18px; 
+    background-color: white;
+}
+
+.ps{
+    margin: 5px 18px;
+    line-height: 2;
+}
+
+.outline {
+    margin-bottom: 50px;
+}
+
+.moreBtn{
+    width: 150px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5%;
+    border: 0px solid #A3A3A3;
+    background-color:#2E4E31;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+    box-shadow : 2px 2px 2px 2px rgb(212, 212, 212);
+    margin-left: 5%;
+    margin-bottom: 80px;
+
+}
+
+
+.flex{
+    display: flex;
+    justify-content: center;
 }
 
 .buy_list{
@@ -27,9 +138,19 @@
 .card{
     width: 250px;
     margin: 10px;
-    border: 1px solid grey;
     border-radius: 5px;
     padding: 10px 10px 15px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 3px #DDDDDD;
+}
+
+.card{
+    width: 250px;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 10px 10px 15px 10px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 3px #DDDDDD;
 }
 
 .card_img{
@@ -51,25 +172,53 @@
 
 .askBtn{
     background-color: #B2C3B2;
+    border: none;
     border-radius: 5px;
     font-weight: bold;
     transition: .3s ease;
     padding: 5px 50px;
     font-size: 17px;
-    margin: 22px auto 2px auto;
+    margin: auto;
     display: block;
 }
 
 .askBtn:hover{
     background-color: #668066;
+    color: white;
     transition: .3s ease;
 }
 
-.outline {
-    margin-bottom: 50px;
+.askBtn Link{
+    text-decoration: none;
 }
+
 
 a{
     text-decoration: none;
     color: black;
+}
+
+
+
+
+.askBtn{
+    background-color: #B2C3B2;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: .3s ease;
+    padding: 5px 50px;
+    font-size: 17px;
+    margin: auto;
+    display: block;
+}
+
+.askBtn:hover{
+    background-color: #668066;
+    color: white;
+    transition: .3s ease;
+}
+
+.askBtn Link{
+    text-decoration: none;
 }

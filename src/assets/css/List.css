@@ -13,7 +13,7 @@
     text-align: left;
     margin-left: 3%;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: bolder;
 }
 
 .List-bottom {
@@ -33,4 +33,24 @@
 .List-date {
     font-size: 24px;
     color: #6F6F6F;
+}
+.List-top{
+    width: 50%;
+    display: flex;
+    align-items: center;
+
+}
+.List-bank{
+    width: 50%;
+    font-weight: bolder;
+    color: grey;
+    margin-left: 20px;
+}
+
+.charging{
+    color: blue;
+}
+
+.used{
+    color: red;
 }

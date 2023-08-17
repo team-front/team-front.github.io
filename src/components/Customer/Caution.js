@@ -8,14 +8,30 @@ import img23 from "../../img/caution2-3.PNG";
 import img31 from "../../img/caution3-1.PNG";
 import img32 from "../../img/caution3-2.PNG";
 import img33 from "../../img/caution3-3.PNG";
+import { Link, useLocation } from "react-router-dom";
+import Logo1 from "../../assets/img/Logo1.png";
+import LogoutBtn from "./LogoutBtn";
 
 function Caution() {
-    return <div>
+
+    const location = useLocation();
+
+    const name = localStorage.getItem("Login")=='1' ? location.state.name : "";
+    const pnumber = localStorage.getItem("Login")=='1' ? location.state.pnumber : "";
+
+
+    if(localStorage.getItem("Login")!='1'){
+        localStorage.setItem("FromCautionPage", '1');
+    }
+    return <div className={styles.outline}>
+        {localStorage.getItem("Login")=='1'?<LogoutBtn/>:""}
         <div className={styles.header}>
-            <h1>LOGO</h1>
+                <Link style={{color: 'black'}} to='/' state={{name : name, pnumber : pnumber} }><span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
+                </Link>
         </div>
         <div className={styles.banner}>유의사항</div>
-        <div>
+        <div className={styles.contents}>
+        <div >
             <span className={styles.topic}>반품 배송비</span>
             <div className={styles.caution_imgs}>
                 <img src={img11} className={styles.caution_img} />
@@ -57,6 +73,7 @@ function Caution() {
                 - <strong>휴대폰 결제</strong>: <strong>영업일 기준 평균 3일 이내</strong> 취소(환불)완료 후 당일 한도가 복구됩니다. {'\n'}
                 - <strong>무통장 입금</strong>: <strong>영업일 기준 평균 3일 이내</strong>에 요청하신 계좌로 환불됩니다. {'\n'}
             </p>
+        </div>
         </div>
         <AskModal />
     </div>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import '../../assets/css/Login.css';
 import Logo1 from "../../assets/img/Logo1.png";
 import CustomerData from "../../data/customerData.json";
+import backlogo from '../../assets/img/back.png'
 
 function Login() {
 
@@ -51,6 +52,15 @@ function Login() {
         setSendCnum(1);
     }
 
+    const handleCertify = () => {
+        if(parseInt(cnumber,10) != randCnum){
+            alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
+        }
+        else{
+            setCertify(true);
+        }
+    }
+
     const handleLogin = () => {
         if (!name){
             alert("성함을 입력해주세요.");
@@ -61,8 +71,8 @@ function Login() {
         else if(!cnumber){
             alert("문자로 전송된 인증번호를 입력해주세요.");
         }
-        else if(parseInt(cnumber,10) != randCnum){
-            alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
+        else if(!certify){
+            alert("전화번호 인증을 완료해주세요.");
         }
         else{
             if(localStorage.getItem("CustomerData")==undefined){
@@ -89,20 +99,56 @@ function Login() {
         }
     }
 
+    let [timer, setTimer] = useState('00:00')
+
+    let time = 60000;
+    let min;
+    let sec;
+
+
+
+    const [clicked, setClicked] = useState(false);
+    const [certify, setCertify] = useState(false);
+
+    function timeMaker(){
+        time = time-1000;
+        min = Math.floor(time/60000);
+        sec = (time%60000)/1000;
+        setTimer(min+'0:'+sec)
+    };
+
+    const clicking = ()=>{
+        clearInterval(timeMaker);
+        setClicked(true)
+        alert('전송되었습니다.');
+
+        setInterval(timeMaker, 1000)
+
+        setTimeout(function(){
+            setClicked(false)
+            setTimer('00:00')
+            time = 60000;
+            clearInterval(timeMaker)
+
+        }, 60000);
+    }
+
+    if (clicked===false){
+ 
+    }
+
+
   return (
     <div className="Lo-whole">
         <div className="Lo-header" onClick={goToHome}>
-                보따리<img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
-            </div>
+            <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>            </div>
         <div className="My-topbox" style={{textAlign:"center"}}>
             로그인
         </div>
         <div style={{display:'flex', justifyContent:'space-between'}}>
             <button className="Lo-back" style={{marginLeft: '5%'}} onClick={goBack}>
+                <img src={backlogo}/>
                 뒤로가기
-            </button>
-            <button className="Lo-back" onClick={goToSignup}>
-                회원가입
             </button>
         </div>
         
@@ -114,12 +160,16 @@ function Login() {
                 회원가입
             </button>
         </div> */}
-        <div className="Lo-middle" style={{marginBotton: "50px"}}>
+
+         <div className="Lo-middle" style={{marginBotton: "50px"}}>
             <div className="Lo-name">
                 <div className="Lo-nametag">
                     이름
                 </div>
-                <input className="Lo-nameinput" type='string' onChange={(event)=> handleNameInput(event)}/>
+                
+                <input className="Lo-nameinput" type='string' onChange={(event)=> handleNameInput(event)}
+                    style={{marginLeft:'-10px'}}/>
+                <div className="Lo-none"></div>
             </div>
 
             <div className="Lo-number">
@@ -127,17 +177,23 @@ function Login() {
                     전화번호
                 </div>
                 <input className="Lo-numberinput" type='text' onChange={(event)=> handlePnumberInput(event)} placeholder="000-0000-0000"/>
-                <button style={{marginLeft: '5px'}} /* , position: 'relative', marginRight: '-185px' */
-                    onClick={()=>{sendCnumber()}} disabled={pnumber?false:true}>
-                    {sendCnum?'인증번호 재전송':'인증번호 전송'}
-                </button>
+                <div className="forTimer">
+                    <button className={clicked===false?"Lo-sendphone":"Lo-sendphone Lo-clicked"} style={{marginLeft: '11px'}} /* , position: 'relative', marginRight: '-185px' */
+                        onClick={()=>{sendCnumber();clicking();}} disabled={pnumber?false:true}>
+                        {sendCnum?'인증번호 재전송':'인증번호 전송'}
+                    </button>
+                    <span className="timer">{timer}</span>
+                </div>
             </div>
 
             <div className="Lo-cert">
                 <div className="Lo-certtag">
                     인증번호
                 </div>
-                <input className="Lo-certinput" type='text' onChange={(event)=> handleCnumberInput(event)}/>
+                <input className="Lo-certinput" type='number' onChange={(event)=> handleCnumberInput(event)}/>
+                <button className="Lo-sendphone" onClick={()=>{handleCertify()}} disabled={certify === false ? false:true}>
+                    {certify === false ? "인증" : "인증완료" }
+                </button>
             </div>
             
             <button className="Lo-login" onClick={()=>{handleLogin()}}>
@@ -156,7 +212,7 @@ function Login() {
                 </span>
             </div>
         </div>
-        </div>
+    </div>
   );
 }
 

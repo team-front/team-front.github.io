@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { React, useState } from 'react';
 import '../../assets/css/Pay.css';
 import PurchaseData from "../../data/purchaseDataList.json";
+import Logo1 from "../../assets/img/Logo1.png";
+import LogoutBtn from "./LogoutBtn";
 
 const Pay = () => {
     const navigate = useNavigate();
@@ -61,12 +63,11 @@ const Pay = () => {
     }
 
     
-    
-
     return (
-        <div>
+        <div className="Pay-container">
+            <LogoutBtn/>
             <div className="Pay-header" onClick={goToHome}>
-                LOGO for customer
+                <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
             </div>
             <div className="Pay-topbox">
                 충전 결제
@@ -89,18 +90,18 @@ const Pay = () => {
                     결제 수단
                 </div>
                 <div className="Pay-method-ubuttons">
-                    <button className="Pay-method-card" onClick={()=>handleClick(paymethod[0])}>
-                        {paymethod[0]}
+                    <button className={method===paymethod[0]? "Pay-method-card clicked-method":"Pay-method-card"} onClick={handleClick} value={paymethod[0]}>
+                        {paymethod[0]} 
                     </button>
-                    <button className="Pay-method-nobook" onClick={()=>handleClick(paymethod[1])}>
+                    <button className={method===paymethod[1]? "Pay-method-nobook clicked-method":"Pay-method-nobook"} onClick={handleClick} value={paymethod[1]}>
                         {paymethod[1]}
                     </button>
                 </div>
                 <div className="Pay-method-dbuttons">
-                    <button className="Pay-method-naver" onClick={()=>handleClick(paymethod[2])}>
+                    <button className={method===paymethod[2]? "Pay-method-naver clicked-method":"Pay-method-naver"} onClick={handleClick} value={paymethod[2]}>
                         {paymethod[2]}
                     </button>
-                    <button className="Pay-method-kakao" onClick={()=>handleClick(paymethod[3])}>
+                    <button className={method===paymethod[3]? "Pay-method-kakao clicked-method":"Pay-method-kakao"} onClick={handleClick} value={paymethod[3]}>
                         {paymethod[3]}
                     </button>
                 </div>
