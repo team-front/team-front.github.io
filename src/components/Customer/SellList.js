@@ -78,6 +78,8 @@ function SellList(){
                             title={product.title}
                             price={product.price}
                             text=''
+                            name={name}
+                            pnumber={pnumber}
                         />
                     ))}
                 </div>

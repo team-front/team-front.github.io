@@ -1,25 +1,37 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import data from "../../data/product.json";
 import styles from "../../assets/css/Detail.module.css";
 import { Link } from "react-router-dom";
 import user_profile from "../../img/user_profile.png";
 import LogoutBtn from './LogoutBtn';
+import Logo1 from "../../assets/img/Logo1.png"
+
 
 function Detail(){
     const {id} = useParams();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const name = localStorage.getItem("Login") == '1' ? location.state.name : "";
+    const pnumber = localStorage.getItem("Login") == '1' ? location.state.pnumber : "";
 
     const [detail, setDetail] = useState([]);
     useEffect(() => {
         setDetail(data);
     }, []);
 
+    const goToHome = () => {
+        navigate("/", { state :{name : name, pnumber : pnumber} });
+    }
+
     for (var i=0; i<detail.length; i++){
         if (`${id}` == detail[i]["title"]) {
             return <div className={styles.outline}>
              {localStorage.getItem("Login")=='1'?<LogoutBtn/>:""}
-                <div className={styles.header}>
-                    <h1>LOGO</h1>
+                <div className="My-header" style={{cursor:'pointer'}} onClick={goToHome}>
+                    <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
                 </div>
 
                 <div className={styles.user_info}>

@@ -24,7 +24,7 @@ function AskModal() {
         <Modal.Header closeButton>
           <Modal.Title className={styles.modal_title}>주문/교환/환불 문의</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={styles.modal_body}><strong>010-0000-0000</strong> 으로 전화해서<br /> 문의내용을 말씀해주세요!</Modal.Body>
+        <Modal.Body className={styles.modal_body}><strong>010-1234-5678</strong> 으로 전화해서<br /> 문의내용을 말씀해주세요!</Modal.Body>
         <Modal.Footer>
           {/* <Button variant="secondary" onClick={handleClose}>
             닫기
