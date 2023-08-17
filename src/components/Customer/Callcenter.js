@@ -12,7 +12,7 @@ function Callcenter(){
     const handleShow = () => setShow(true);
 
     return(
-        <div>
+        <div style={{cursor:"pointer"}}>
             <div className={styles.fix} onClick={handleShow}>
                 <div className={styles.icon}>
                 <img src={Phone}/>

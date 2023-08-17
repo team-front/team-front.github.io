@@ -75,7 +75,7 @@ function SignUp() {
         else if(!cnumber){
             alert("문자로 전송된 인증번호를 입력해주세요.");
         }
-        else if(certify){
+        else if(!certify){
             alert("인증번호가 일치하지 않습니다.\n다시 입력해주세요.");
         }
         else if(address == ""){

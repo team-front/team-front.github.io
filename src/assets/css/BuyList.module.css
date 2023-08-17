@@ -222,3 +222,27 @@ a{
 .askBtn Link{
     text-decoration: none;
 }
+
+.buy-back {
+    width: 110px;
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 5%;
+    border: 0px solid #A3A3A3;
+    background-color: #B2C3B2;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 15px;
+    box-shadow : 2px 2px 2px 2px rgb(212, 212, 212);
+    margin-left: 5%;
+}
+
+.buy-back img{
+    height: 20px;
+    margin-right: 10px;
+}

@@ -6,6 +6,7 @@ import user_profile from "../../img/user_profile.png";
 import Dropdown from "./Dropdown";
 import Logo1 from "../../assets/img/Logo1.png"
 
+
 /* 텍스트 아이콘 사용 */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +17,8 @@ import img from "../../img/image1.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PurchaseData from "../../data/purchaseDataList.json";
 import LogoutBtn from "./LogoutBtn";
+import backlogo from '../../assets/img/back.png'
+
 
 function BuyList(){
 
@@ -32,6 +35,10 @@ function BuyList(){
 
     const goToHome = () => {
         navigate("/", { state :{name : name, pnumber : pnumber} });
+    }
+
+    const goBack = () => {
+        navigate("/mypage", { state :{name : name, pnumber : pnumber} });
     }
 
     const [products, setProducts] = useState([]);
@@ -53,10 +60,15 @@ function BuyList(){
     const [view, setView] = useState(false);
 
     return <div className={styles.outline}>
+        <LogoutBtn/>
         <div className="My-header" style={{cursor:'pointer', marginTop:'0px', paddingTop:'20px'}} onClick={goToHome}>
                 보따리<img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
         </div>
-        <div className={styles.banner}>내 구매목록</div>
+        <div className={styles.banner} style={{marginBottom:'30px'}}>내 구매목록</div>
+        <button className="My-back" onClick={goBack} style={{marginTop:'0px', marginLeft:'40px'}}>
+            <img src={backlogo}/>
+            뒤로가기
+        </button>
         <div className={styles.buy_list}>
             {signedCusBuylist && signedCusBuylist.map((item, index)=>{
                 // console.log(item);
