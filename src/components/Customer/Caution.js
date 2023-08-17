@@ -25,7 +25,7 @@ function Caution() {
     }
     return <div className={styles.outline}>
         {localStorage.getItem("Login")=='1'?<LogoutBtn/>:""}
-        <div className={styles.header}>
+        <div className={styles.header}  style={{cursor: 'pointer'}}>
                 <Link style={{color: 'black'}} to='/' state={{name : name, pnumber : pnumber} }><span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
                 </Link>
         </div>

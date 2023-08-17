@@ -148,29 +148,27 @@ function SignUp() {
             setIsStarted(true);
         }
     }
-    const clicking = () => {
+    const clicking = ()=>{
+        setClicked(true)
+        alert('전송되었습니다.')
+        for (var i = 1; i < 99999; i++)
+        window.clearInterval(i);
+        time = 60000;
+        let timeMaker = 
+        setInterval(function(){
+               time = time-1000;
+               min = Math.floor(time/60000);
+               sec = (time%60000)/1000;
+               setTimer(min+'0:'+sec)
+           }, 1000)
+        setTimeout(function(){
+            setClicked(false)
+            setTimer('00:00')
+            time = 60000;
+            clearInterval(timeMaker)
 
-            setClicked(true);
-            alert('전송되었습니다.')
-            let timeMaker = 
-            setInterval(function(){
-                time = time-1000;
-                if(time >= 0 && isStarted===false){
-                min = Math.floor(time/60000);
-                sec = (time%60000)/1000;
-                setTimer(min+'0:'+sec)}
-                else{
-                    clearInterval(timeMaker);
-                }
-            }, 1000)
-            setTimeout(function(){
-                setClicked(false)
-                setTimer('00:00')
-                time = 60000;
-                clearInterval(timeMaker)
-            }, 60000);
-        }
-
+        }, 60000);
+    }
     if (clicked===false){
  
     }

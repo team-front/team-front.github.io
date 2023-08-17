@@ -110,20 +110,19 @@ function Login() {
     const [clicked, setClicked] = useState(false);
     const [certify, setCertify] = useState(false);
 
-    function timeMaker(){
-        time = time-1000;
-        min = Math.floor(time/60000);
-        sec = (time%60000)/1000;
-        setTimer(min+'0:'+sec)
-    };
-
     const clicking = ()=>{
-        clearInterval(timeMaker);
         setClicked(true)
-        alert('전송되었습니다.');
-
-        setInterval(timeMaker, 1000)
-
+        alert('전송되었습니다.')
+        for (var i = 1; i < 99999; i++)
+        window.clearInterval(i);
+        time = 60000;
+        let timeMaker = 
+        setInterval(function(){
+               time = time-1000;
+               min = Math.floor(time/60000);
+               sec = (time%60000)/1000;
+               setTimer(min+'0:'+sec)
+           }, 1000)
         setTimeout(function(){
             setClicked(false)
             setTimer('00:00')
@@ -140,7 +139,7 @@ function Login() {
 
   return (
     <div className="Lo-whole">
-        <div className="Lo-header" onClick={goToHome}>
+        <div className="Lo-header" onClick={goToHome}  style={{cursor: 'pointer'}}>
             <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>            </div>
         <div className="My-topbox" style={{textAlign:"center"}}>
             로그인

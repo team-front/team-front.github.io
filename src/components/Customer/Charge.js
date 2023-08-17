@@ -44,7 +44,7 @@ const Charge = () => {
         <div className="Ch-container">
             <LogoutBtn/>
             <Callcenter/>
-            <div className="Ch-header" onClick={goToHome}>
+            <div className="Ch-header" onClick={goToHome}  style={{cursor: 'pointer'}}>
                 <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
             </div>
             <div className="Ch-topbox">

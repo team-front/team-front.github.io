@@ -53,7 +53,7 @@ const Edit = () => {
     return (
         <div className='Edit-whole'>
             <LogoutBtn/>
-            <div className="Edit-header" onClick={goToHome}>
+            <div className="Edit-header" onClick={goToHome}  style={{cursor: 'pointer'}}>
                 <span>보따리</span><img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
             </div>
             <div className="Edit-topbox">
