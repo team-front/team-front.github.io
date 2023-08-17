@@ -59,16 +59,17 @@ function BuyList(){
 
     const [view, setView] = useState(false);
 
-    return <div className={styles.outline}>
+    return <div className={styles.outline} >
         <LogoutBtn/>
         <div className="My-header" style={{cursor:'pointer', marginTop:'0px', paddingTop:'20px'}} onClick={goToHome}>
                 보따리<img src={Logo1} style={{width:'80px', height:"80px",  marginBottom:'15px', marginLeft:'5px', transform: 'rotate(10deg)'}}/>
         </div>
-        <div className={styles.banner} style={{marginBottom:'30px'}}>내 구매목록</div>
+        <div className={styles.banner} style={{marginBottom:'20px'}}>내 구매목록</div>
         <button className="My-back" onClick={goBack} style={{marginTop:'0px', marginLeft:'40px'}}>
             <img src={backlogo}/>
             뒤로가기
         </button>
+        <div style={{height:"15px"}}> </div>
         <div className={styles.buy_list}>
             {signedCusBuylist && signedCusBuylist.map((item, index)=>{
                 // console.log(item);
@@ -76,7 +77,7 @@ function BuyList(){
                     <div className={styles.card} key={index}>
                         <LogoutBtn/>
                         <div>
-                            <img src={img} className={styles.card_img} />
+                            <img src={`${process.env.PUBLIC_URL}/img/`+item[7]} className={styles.card_img} />
                         </div>
                         <div className={styles.text}>
                             <p>구매번호: {item[0] ? item[0] : 2652895023}</p>

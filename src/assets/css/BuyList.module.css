@@ -129,7 +129,7 @@
 .buy_list{
     display: flex;
     flex-wrap: wrap;
-    justify-content: start;
+    justify-content: center;
     max-width: 1080px;
     /* width: 1080px; */
     margin: auto;
