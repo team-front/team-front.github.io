@@ -87,7 +87,7 @@ function BuyList(){
                             <p>가격: {item[4] ? item[4] : 8000}</p>
                             <p>결제상태: {item[5] ? item[5] : "결제완료"}</p>
                             <p>구매상태: {item[6] ? item[6] : "구매완료"}</p>
-                            <button className={styles.askBtn}><Link to={'/info'}>
+                            <button className={styles.askBtn}><Link to={'/info'} state={{name : name, pnumber : pnumber}}>
                                 교환/환불 문의
                             </Link></button>
                         </div>
